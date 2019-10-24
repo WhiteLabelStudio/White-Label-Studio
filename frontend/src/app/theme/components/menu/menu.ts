@@ -34,7 +34,7 @@ export const menuItems = [
   },
   {
     title: 'Product Demostrations',
-    routerLink: 'productdemo',
+    routerLink: 'pd-home',
     icon: 'fa-paperclip',
     selected: false,
     expanded: false,

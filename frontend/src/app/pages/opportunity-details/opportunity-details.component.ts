@@ -408,6 +408,7 @@ export class OpportunityDetailsComponent implements OnInit {
         this.toastrService.error('Please fill all customer contact name Details.', 'Missing Values');
       } else {
         if (this.update) {
+          console.log("this.qualifiedOpportunitiesForm.value:",this.qualifiedOpportunitiesForm.value);
           this.toastrService.success('Qualified Opportunity updated succcessfully.', 'Thank You :)');
           this.qualifiedOpportunitiesForm.value.projectid = this.project;
           //update code

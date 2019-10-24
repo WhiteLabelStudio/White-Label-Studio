@@ -42,12 +42,18 @@ app.listen(4000, () => console.log('Express server running on port 4000'));
 
 
 var qualified_opportunities = [];
+var product_demo=[];
 customer = [];
 project = [];
+var demo=[]
 var contacts = [];
 
 router.route('/QualifiedOpportunities').get((req, res) => {
   res.json(qualified_opportunities)
+});
+
+router.route('/ProductDemos').get((req, res) => {
+  res.json(product_demo)
 });
 
 
@@ -95,6 +101,39 @@ router.route('/customer/getCustomer').post((req, res) => {
   res.json({ 'customer': 'Added successfully' });
 });
 
+router.route('/ProductDemos/savePD').post((req, res) => {
+  var str = JSON.stringify(req.body, null, 4);
+  console.log(req.body);
+  var values = [[req.body.customerid,
+  req.body.customername,
+  req.body.project,
+  req.body.scrmnumber,
+  req.body.expectedpovalue,
+  req.body.cpettype,
+  req.body.cpenumber,
+  req.body.expectedcpeprice,
+  req.body.cpeyearlygrowth,
+  req.body.expectedpocdate,
+  req.body.expecteddeploymentdate,
+  req.body.vanserviceflag,
+  req.body.ceintegrationflag,
+  req.body.dcflag,
+  req.body.underlaylink,
+  req.body.interestedproduct,
+   req.body.demoedproduct,
+  req.body.demodate,
+  req.body.weburl,
+    req.body.numberofsites,
+  req.body.demosalesengineering,
+  req.body.ipccresource,
+  req.body.accountmanager,
+  req.body.compititor,
+  req.body.feedback
+  ]];
+  MySQLCon.query("INSERT INTO DEMO (customer_id,customer_name,project_id,SCRM_number,expected_PO_value,CPE_type,CPE_number,expected_CPE_price,CPE_yearly_growth,expected_POC_date,expected_deployment_date,VAN_service_flag,CE_integration_flag,DC_flag,underlink_provider_flag,interested_product,demoed_product,demo_date,webex_url,no_of_sites,demo_sales_engineer,ipcc_resource,account_manager,competitors,feedback) VALUES ?", [values], function (err, result) {
+    if (err) throw err;
+  });
+});
 
 
 router.route('/QualifiedOpportunities/saveQO').post((req, res) => {
@@ -134,6 +173,43 @@ router.route('/QualifiedOpportunities/saveQO').post((req, res) => {
     });
   });
 });
+router.route('/ProductDemos/updatePD').post((req, res) => {
+  var str = JSON.stringify(req.body, null, 4);
+  var values = [[
+  req.body.demo_id,
+  req.body.project_id,
+  req.body.interested_product,
+  req.body.demoed_product,
+  req.body.demo_sales_engineer,
+  req.body.ipcc_resource,
+  req.body.account_manager,
+  req.body.competitors,
+  req.body.feedback,
+  req.body.webex_url,
+  req.body.customer_name,
+  req.body.SCRM_number,
+  req.body.expected_PO_value,
+  req.body.no_of_sites,
+  req.body.CPE_type,
+  req.body.CPE_number,
+  req.body.expected_CPE_price,
+  req.body.CPE_yearly_growth,
+  req.body.expected_POC_date,
+  req.body.expected_deployment_date,
+  req.body.VAN_service_flag,
+  req.body.CE_integration_flag,
+  req.body.DC_flag,
+  req.body.underlink_provider_flag,
+  req.body.demo_date,
+  req.body.customer_id,
+  ]];
+
+  SQL = "UPDATE DEMO SET interested_product = '"+req.body.interested_product+"' , demoed_product = '"+req.body.demoed_product+"' , demo_sales_engineer = '"+req.body.demo_sales_engineer+"' , ipcc_resource='"+req.body.ipcc_resource+"' , account_manager='"+req.body.account_manager+"' , competitors='"+req.body.competitors+"' , feedback='"+req.body.feedback+"' , webex_url='"+req.body.webex_url+"' , customer_name='"+req.body.customer_name+"' , SCRM_number='"+req.body.SCRM_number+"' , expected_PO_value='"+req.body.expected_PO_value+"' , no_of_sites='"+req.body.no_of_sites+"'  , CPE_type='"+req.body.CPE_type+"' , CPE_number='"+req.body.CPE_number+"' , expected_CPE_price = '"+req.body.expected_CPE_price+"' , CPE_yearly_growth='"+req.body.CPE_yearly_growth+"' , expected_POC_date ='"+req.body.expected_POC_date+"' , expected_deployment_date='"+req.body.expected_deployment_date+"' , VAN_service_flag='"+req.body.VAN_service_flag+"' , CE_integration_flag='"+req.body.CE_integration_flag+"', DC_flag = '"+req.body.DC_flag+"' , underlink_provider_flag = '"+req.body.underlink_provider_flag+"',demo_date = '"+req.body.demo_date+"',customer_id = '"+req.body.customer_id+"' WHERE demo_id ="+req.body.demo_id;
+  console.log(SQL);
+  MySQLCon.query(SQL, function (err, result) {
+    if (err) throw err;
+  });
+});
 
 router.route('/QualifiedOpportunities/updateQO').post((req, res) => {
   var str = JSON.stringify(req.body, null, 4);
@@ -152,10 +228,13 @@ router.route('/QualifiedOpportunities/updateQO').post((req, res) => {
   req.body.region,
   req.body.country,
   req.body.state,
-  req.body.year
+  req.body.year,
+  req.body.status,
+  req.body.revenue,
+  req.body.endcustomerflag
   ]];
 
-  SQL = "UPDATE project SET customer_type = '"+req.body.customertype+"' WHERE project_id ="+req.body.projectid;
+  SQL = "UPDATE project SET customer_type = '"+req.body.customertype+"' , customer_name = '"+req.body.customername+"' , interested_product = '"+req.body.interestedproduct+"' , probability='"+req.body.probability+"' , region='"+req.body.region+"' , country='"+req.body.country+"' , state='"+req.body.state+"' , q1='"+req.body.q1+"' , q2='"+req.body.q2+"' , q3='"+req.body.q3+"' , q4='"+req.body.q4+"' , qualified_opportunity_flag='"+req.body.qualifiedopportubityflag+"'  , end_customer_name='"+req.body.endcustomer+"' , year='"+req.body.year+"' , end_cust_infrastructure_size = '"+req.body.endCustomerinfrastructure+"' , status='"+req.body.status+"' , revenue ='"+req.body.revenue+"' , end_customer_flag='"+req.body.endcustomerflag+"' WHERE project_id ="+req.body.projectid;
   console.log(SQL);
   MySQLCon.query(SQL, function (err, result) {
     if (err) throw err;
@@ -179,6 +258,31 @@ router.route('/QualifiedOpportunities/updateQO').post((req, res) => {
   });
 });
 
+router.route('/ProductDemos/getPD').post((req, res) => {
+  var str = JSON.stringify(req.body, null, 4);
+  get_product_demo().then(function (response) {
+    res.json({ 'product_demo': 'Added successfully' });
+  });
+});
+
+async function get_product_demo() {
+  MySQLCon.query("SELECT * FROM DEMO", function (err, result, fields) {
+    if (err) throw err;
+    product_demo = [];
+    var response = result.length;
+    console.log("Showing all the demos:");
+    for (i = 0; i < result.length; i++) {
+      var demo = {
+        "projectid": result[i].project_id,
+        "customername": result[i].customer_name,
+        "demoid": result[i].demo_id,
+      };
+      product_demo.push(demo);
+    }
+    console.log(product_demo);
+  });
+}
+
 
 router.route('/QualifiedOpportunities/getQO').post((req, res) => {
   var str = JSON.stringify(req.body, null, 4);
@@ -192,6 +296,7 @@ async function get_qualified_opportunities() {
     if (err) throw err;
     qualified_opportunities = [];
     var response = result.length;
+    console.log(result[0]);
     for (i = 0; i < result.length; i++) {
       var opportunity = {
         "projectid": result[i].project_id,
@@ -201,7 +306,13 @@ async function get_qualified_opportunities() {
         "region": result[i].region,
         "country": result[i].country,
         "state": result[i].state,
-        "status": result[i].status
+        "status": result[i].status,
+        "interestedproduct":result[i].interested_product,
+        "q1":result[i].q1,
+        "q2":result[i].q2,
+        "q3":result[i].q3,
+        "q4":result[i].q4,
+        "year": result[i].year,
       };
       qualified_opportunities.push(opportunity);
     }
@@ -270,5 +381,62 @@ router.route('/project/getProject').post((req, res) => {
 
  
 });
+
+
+router.route('/demo').get((req, res) => {
+  res.json(demo)
+});
+
+router.route('/demo/getDemo').post((req, res) => {
+  var str = JSON.stringify(req.body, null, 4);
+  var projectidNum = req.body.toString();
+  var str = JSON.stringify(req.body, null, 4);
+  get_pd(req.body.demoid).then(function (response) {
+    res.json({ 'demo': 'Added successfully' });
+  });
+});
+
+
+async function get_pd(t) {
+  var SQL = "SELECT * FROM demo where demo_id = " + t;
+  MySQLCon.query(SQL, function (err, result, fields) {
+    if (err) throw err;
+    demo = [];
+    for (i = 0; i < result.length; i++) {
+      var opportunity = {
+        "demoid":result[0].demo_id,
+        "projectid":result[0].project_id,
+        "contactname":result[0].contact_name,
+        "contactemail":result[0].contact_email,
+        "contact_phone":result[0].contact_phone,
+        "interested_product":result[0].interested_product,
+        "demoed_product":result[0].demoed_product,
+        "demo_sales_engineer":result[0].demo_sales_engineer,
+        "ipcc_resource":result[0].ipcc_resource,
+        "account_manager":result[0].account_manager,
+        "competitors":result[0].competitors,
+        "feedback":result[0].feedback,
+        "webex_url":result[0].webex_url,
+        "customer_name":result[0].customer_name,
+        "SCRM_number":result[0].SCRM_number,
+        "expected_PO_value":result[0].expected_PO_value,
+        "no_of_sites":result[0].no_of_sites,
+        "CPE_type":result[0].CPE_type,
+        "CPE_number":result[0].CPE_number,
+        "expected_CPE_price":result[0].expected_CPE_price,
+        "CPE_yearly_growth":result[0].CPE_yearly_growth,
+        "expected_POC_date":result[0].expected_POC_date,
+        "expected_deployment_date":result[0].expected_deployment_date,
+        "VAN_service_flag":result[0].VAN_service_flag,
+        "CE_integration_flag":result[0].CE_integration_flag,
+        "DC_flag":result[0].DC_flag,
+        "underlink_provider_flag":result[0].underlink_provider_flag,
+        "demo_date":result[0].demo_date,
+        "customer_id":result[0].customer_id
+      };
+      demo.push(opportunity);
+    }
+  });
+}
 
 

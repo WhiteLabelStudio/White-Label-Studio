@@ -23,8 +23,8 @@ export class SolutionTrailTool {
 
         this.steps = [
           {name: 'Contact Details', icon: 'fa-user', active: true, valid: false, hasError:false },
-          {name: 'Solution Request Details', icon: 'fa-pencil', active: false, valid: false, hasError:false },
-          {name: 'Selected Features', icon: 'fa-credit-card', active: false, valid: false, hasError:false },
+          {name: 'Packages', icon: 'fa-pencil', active: false, valid: false, hasError:false },
+          {name: 'Features', icon: 'fa-credit-card', active: false, valid: false, hasError:false },
           {name: 'Trail Details', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
         ]
 

@@ -4,55 +4,61 @@ import { Router } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
+import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'qo-home',
+  selector: 'pd-home',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './qo-home.component.html',
-  styleUrls: ['./qo-home.component.scss']
+  templateUrl: './pd-home.component.html',
+  styleUrls: ['./pd-home.component.scss']
 })
 
-export class QOComponent implements OnInit {
+export class PDComponent implements OnInit {
 
-  qo:any;
+  pd:any;
+  f: NgForm;
   searchForm: FormGroup;
   constructor(private trailstudio: TrailstudioService,private router: Router,private formBuilder: FormBuilder) { }
   
   ngOnInit() {
+
     this.searchForm = this.formBuilder.group({
       searchTxt: [''],
       orderBy: ['asc'],
       customerAttr: [''],
     });
-    this.findQualifiedOpportunity();
+
+    this.findProductDemos();
+    //console.log("this is the test value : ",this.f.value.orderBy);
   }
 
 
-   //Get All Customer Details
-   getQualifiedOpprtunity() {
+
+   //Get All PD Details
+   getProductDemos() {
     this.trailstudio
-      .getQualifiedOpportunities()
+      .getProductDemos()
       .subscribe((data) => {
         console.log(data);
-        this.qo = data;
-        console.log("I am called again..",this.qo);
+        this.pd = data;
+        console.log("I am called again for product demos..",data);
       });
   }
 
 
-  findQualifiedOpportunity() {
+  findProductDemos() {
     this.trailstudio
-      .getAllQualifiedOpportunities()
+      .getAllProductDemos()
       .subscribe((data) => {
-        this.getQualifiedOpprtunity();
+        this.getProductDemos();
       });
   }
 
   cardClicked(qo){
-    this.router.navigate(['/pages/qualifiedopportunities'],{ queryParams: { projectid: qo.projectid} });
+    this.router.navigate(['/pages/productdemo'],{ queryParams: { demoid: qo.demoid} });
   }
 
-  public firstControlModel: number[];
+  /*public firstControlModel: number[];
   public firstControlOptions: IMultiSelectOption[] = [
     { id: 1, name: 'Option 1' },
     { id: 2, name: 'Option 2' },
@@ -112,5 +118,6 @@ export class QOComponent implements OnInit {
 
   public changeOrderBy() {
       console.log(this.firstControlModel);
-  }
+  }*/
+
 }

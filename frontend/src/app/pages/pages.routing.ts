@@ -10,6 +10,7 @@ import { ProductDemoComponent } from './product-demo/product-demo.component';
 import { AboutComponent } from './about/about.component';
 import { SolutionTrailTool } from './solution-trail-tool/solution-trail-tool.component';
 import { QOComponent } from './qo-home/qo-home.component';
+import { PDComponent } from './pd-home/pd-home.component';
 
 export const routes: Routes = [
     {
@@ -38,7 +39,8 @@ export const routes: Routes = [
             { path: 'solutiontrailrequesttool', component: SolutionTrailTool},
             { path: 'productdemo', component: ProductDemoComponent},
             { path: 'about', component: AboutComponent},
-            { path: 'qo-home', component: QOComponent}
+            { path: 'qo-home', component: QOComponent},
+            { path: 'pd-home', component: PDComponent}
             
         ]
     }

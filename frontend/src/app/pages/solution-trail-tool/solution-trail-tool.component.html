@@ -86,19 +86,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="customerType">Demoed Product</label>
-                                    <select class="form-control" id="probability">
-                                        <option>Not related to Demo</option>
-                                        <option>VNS</option>
-                                        <option>VCS</option>
-                                        <option>Both</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="customerName">Nokia Trial Requestor Name</label>
@@ -113,101 +100,85 @@
                             </div>
                         </div>
                     </form>
+                    <form *ngIf="step.name=='Packages'" [formGroup]="personalForm" style="color: #555;">
+                            <div class="row">
+                                    <div class="col-lg-4 js--wp-4">
+                                        <div class="plan-box">
+                                            <div>
+                                                <h3  class="pakagesHeader">Basic</h3>   <img src="../../../assets/basic.png" alt="POC Tool" style="
+                                                margin-left: 25px;margin-top: 0px;height: 116px;">
+                                            </div>
+                                             <div>
+                                                 <ul>
+                                                    
+                                                        <li><i class="fa fa-thumbs-up"></i>100% virtual infrastructure</li>
+                                                        <li><i class="fa fa-thumbs-up"></i>VSG-Vs will be used</li>
+                                                        <li><i class="fa fa-thumbs-down"></i>Faster deployment</li>
+                                                        <li><i class="fa fa-thumbs-down"></i>Lower wait time for resource</li>
+                                                        <li><i class="fa fa-thumbs-down"></i>Only internet underlay used</li>
+                                                 </ul>
+                                            </div>
+                                             <div>
+                                                 <button class="btn btn-primary btn-rounded" (click)="next()">Sign up now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                          <div class="col-lg-4">
+                                        <div class="plan-box">
+                                            <div>
+                                                <h3 class="pakagesHeader">Premium</h3>
+                                                <img src="../../../assets/premium.png" alt="POC Tool" style="
+                                                margin-left: 25px;margin-top: 0px;height: 116px;">
+                                            </div>
+                                             <div>
+                                                 <ul>
+                                                     <li><i class="fa fa-thumbs-up"></i>100% virtual infrastructure</li>
+                                                     <li><i class="fa fa-thumbs-up"></i>VSG-Vs will be used</li>
+                                                     <li><i class="fa fa-thumbs-up"></i>Faster deployment</li>
+                                                     <li><i class="fa fa-thumbs-down"></i>Lower wait time for resource</li>
+                                                     <li><i class="fa fa-thumbs-down"></i>Only internet underlay used</li>
 
+                                                 </ul>
+                                            </div>
+                                             <div>
+                                                 <button class="btn btn-primary btn-rounded" (click)="next()">Sign up now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                       <div class="col-lg-4">
+                                        <div class="plan-box">
+                                            <div>
+                                                <h3  class="pakagesHeader">Advanced</h3>
+                                                <img src="../../../assets/advanced.png" alt="POC Tool" style="
+                                                margin-left: 25px;margin-top: 0px;height: 116px;">
+                                            </div>
+                                             <div>
+                                                 <ul>
+                                                    
+                                                        <li><i class="fa fa-thumbs-up"></i>100% virtual infrastructure</li>
+                                                        <li><i class="fa fa-thumbs-up"></i>VSG-Vs will be used</li>
+                                                        <li><i class="fa fa-thumbs-up"></i>Faster deployment</li>
+                                                        <li><i class="fa fa-thumbs-up"></i>Lower wait time for resource</li>
+                                                        <li><i class="fa fa-thumbs-up"></i>Only internet underlay used</li>
+                                                 </ul>
+                                            </div>
+                                             <div>
+                                                 <button class="btn btn-primary btn-rounded" (click)="next()">Sign up now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                </div>
+                        </form>
                     <form *ngIf="step.name=='Solution Request Details'" [formGroup]="personalForm">
-                        <!--   <div class="form-group col-md-2">
-                            <label class="form-control-label">Salutation</label>
-                            <select formControlName="salutation" class="form-control">
-                                <option>Mr</option>
-                                <option>Mrs</option>
-                            </select>
-                        </div>      
-
-                        <div class="form-group col-md-5" [ngClass]="{'has-danger' : step.hasError && personalForm.get('firstname').hasError('required'), 'has-success' : !personalForm.get('firstname').hasError('required') }">
-                            <label class="form-control-label">First Name</label>
-                            <input formControlName="firstname" class="form-control" [ngClass]="{'form-control-danger' :  personalForm.get('firstname').hasError('required'), 'form-control-success' :  !personalForm.get('firstname').hasError('required') }" type="text"> 
-                            <span class="help-block text-danger" *ngIf="step.hasError && personalForm.get('firstname').hasError('required')">First Name is required</span>                             
-                        </div>
-
-                        <div class="form-group col-md-5" [ngClass]="{'has-danger' : step.hasError && personalForm.get('lastname').hasError('required'), 'has-success' : !personalForm.get('lastname').hasError('required') }">
-                            <label class="form-control-label">Last Name</label>
-                            <input formControlName="lastname" class="form-control" [ngClass]="{'form-control-danger' :  personalForm.get('lastname').hasError('required'), 'form-control-success' :  !personalForm.get('lastname').hasError('required') }" type="text"> 
-                            <span class="help-block text-danger" *ngIf="step.hasError && personalForm.get('lastname').hasError('required')">Last Name is required</span>                             
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <label class="form-control-label">Gender</label>
-                            <select formControlName="gender" class="form-control">
-                                <option>Male</option>
-                                <option>Female</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-5" [ngClass]="{'has-danger' : (step.hasError && personalForm.get('email').hasError('required')) || (step.hasError && personalForm.get('email').hasError('invalidEmail')), 
-                                                                     'has-success' : !personalForm.get('email').hasError('required') && !personalForm.get('email').hasError('invalidEmail')}">
-                            <label class="form-control-label">Contact email</label>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                                </div> 
-                                <input formControlName="email" class="form-control" [ngClass]="{'form-control-danger' : (step.hasError && personalForm.get('email').hasError('required')) || (step.hasError && personalForm.get('email').hasError('invalidEmail')), 
-                                                                                                'form-control-success' :  !personalForm.get('email').hasError('required') && !personalForm.get('email').hasError('invalidEmail')}" type="text">                      
-                            </div>
-                            <span class="help-block text-danger" *ngIf="step.hasError && personalForm.get('email').hasError('required')">Email is required</span>                              
-                            <span class="help-block text-danger" *ngIf="step.hasError && personalForm.get('email').hasError('invalidEmail')">Invalid email address</span>
-                        </div>
-
-                        <div class="form-group col-md-4" [ngClass]="{'has-danger' : step.hasError && personalForm.get('phone').hasError('required'), 'has-success' : !personalForm.get('phone').hasError('required') }">
-                            <label class="form-control-label">Phone</label>
-                            <div class="input-group">
-                                <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                <input formControlName="phone" class="form-control" [ngClass]="{'form-control-danger' :  personalForm.get('phone').hasError('required'), 'form-control-success' :  !personalForm.get('phone').hasError('required') }" type="number"> 
-                            </div>
-                            <span class="help-block text-danger" *ngIf="step.hasError && personalForm.get('phone').hasError('required')">Phone is required</span>                             
-                        </div>
-
-                        <div class="form-group col-md-2" [ngClass]="{'has-danger' : step.hasError && personalForm.get('zipcode').hasError('required'), 'has-success' : !personalForm.get('zipcode').hasError('required') }">
-                            <label class="form-control-label">Zip Code</label>
-                            <input formControlName="zipcode" class="form-control" [ngClass]="{'form-control-danger' :  personalForm.get('zipcode').hasError('required'), 'form-control-success' :  !personalForm.get('zipcode').hasError('required') }" type="text"> 
-                            <span class="help-block text-danger" *ngIf="step.hasError && personalForm.get('zipcode').hasError('required')">required</span>                             
-                        </div>
-
-                        <div class="form-group col-md-5" [ngClass]="{'has-danger' : step.hasError && personalForm.get('country').hasError('required'), 'has-success' : !personalForm.get('country').hasError('required') }">
-                            <label class="form-control-label">Select Country</label>
-                            <select formControlName="country" class="form-control" [ngClass]="{'form-control-danger' : step.hasError && personalForm.get('country').hasError('required'), 'form-control-success' : !personalForm.get('country').hasError('required') }">
-                                <option>USA</option>
-                                <option>Canada</option>
-                                <option>Mexico</option>
-                                <option>UK</option>
-                                <option>France</option>
-                                <option>Italy</option>
-                            </select>
-                            <span class="help-block text-danger" *ngIf="step.hasError && personalForm.get('country').hasError('required')">Country is required</span>                             
-                        </div>
-
-                        <div class="form-group col-md-5">
-                            <label class="form-control-label">Select State</label>
-                            <select formControlName="state" class="form-control">
-                                <option>Arkansas</option>
-                                <option>Texas</option>
-                                <option>California</option>
-                                <option>Florida</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group col">
-                            <label class="form-control-label">Address</label>
-                            <textarea formControlName="address" class="form-control"></textarea>
-                        </div>  -->
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="customerName">Product Requested for Trail</label>
                                     <select class="form-control" id="probability">
-                                        <option>VNS</option>
-                                        <option>VCS</option>
-                                        <option>Both</option>
+                                        <option>Premium</option>
+                                        <option>Advanced</option>
+                                        <option>Basic</option>
                                     </select>
                                 </div>
                             </div>
@@ -222,19 +193,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <!-- <div class="col-sm-6" >
-                                        <div class="col bottom-15">
-                                            <h6>Travel Required?</h6>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input id="radio1" type="radio" name="radioInline" class="custom-control-input" checked>
-                                                <label class="custom-control-label" for="radio1">Yes</label>
-                                            </div>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input id="radio2" type="radio" name="radioInline" class="custom-control-input">
-                                                <label class="custom-control-label" for="radio2">No</label>
-                                            </div>
-                                        </div>
-                                    </div>-->
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="customerName">Type of Solution</label>
@@ -250,7 +208,6 @@
                                     <label for="endCustomer">Lab</label>
                                     <select class="form-control" id="probability">
                                         <option>Nokia</option>
-                                        <option>Customer</option>
                                         <option>Customer</option>
                                     </select>
                                 </div>
@@ -288,18 +245,9 @@
                         </div>
                     </form>
 
-                    <form *ngIf="step.name=='Selected Features'" [formGroup]="paymentForm">
+                    <form *ngIf="step.name=='Features'" [formGroup]="paymentForm">
                         <div class="row">
-                                <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="endCustomer">Product Type</label>
-                                            <select class="form-control" id="probability">
-                                                <option>VNS</option>
-                                                <option>VCS</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="customerName">Features</label>
                                     <select class="form-control" id="probability">
@@ -397,12 +345,13 @@
 <br>
 
 
-                    <div class="row">
+                    <div class="row" style="padding-bottom: 30px;">
                         <div class="col-12">
-                            <button class="btn btn-primary pull-left" (click)="prev()"><i
-                                    class="fa fa-chevron-left arrow"></i>&nbsp; Prev Step</button>
+                            <button class="btn btn-primary" (click)="prev()"><i
+                                    class="fa fa-chevron-left arrow"></i><i
+                                    class="fa fa-chevron-left arrow"></i></button>
                             <button class="btn btn-primary pull-right" *ngIf="!steps[steps.length-1].active"
-                                (click)="next()">Next Step &nbsp;<i class="fa fa-chevron-right arrow"></i></button>
+                                (click)="next()"><i class="fa fa-chevron-right arrow"></i><i class="fa fa-chevron-right arrow"></i></button>
                             <button *ngIf="steps[steps.length-1].active" class="btn btn-primary pull-right"
                                 (click)="confirm()">Confirm &nbsp;<i class="fa fa-check arrow"></i></button>
                         </div>
