@@ -1,0 +1,77 @@
+<div     style="background: #e2e2e2;
+margin: -39px;
+padding: 20px;">
+<div class="row  bottom-30" >
+        <div class="col-lg-12 col-sm-12" >
+            <button class="btn btn-main btn-rounded pull-right" routerLink="/pages/productdemo"><i class="fa fa-plus" style="margin-right: 10px;"></i>Add Product Demo</button>
+        </div>
+    </div>
+
+    <form [formGroup]="searchForm" >
+<div class="row">
+
+        <div class="col-lg-4 col-sm-6" ><!--#f="ngForm">-->
+                    <input class="form-control" placeholder="Search Customer..." type="text" style="border-radius: 4px;" name="searchTxt" formControlName="searchTxt"><!--ngModel required #searchTxt="ngModel">-->
+                    <a style="    position: absolute;
+                    top: 4px;
+                    right: 33px;
+                    font-size: 18px;
+                    color: #6c757d;">
+                        <i class="fa fa-search">
+                        </i> 
+                    </a>
+                </div>
+        <div class="col-lg-4 col-sm-6" >
+            <div class="form-group">
+                <select class="form-control" formControlName="orderBy" name="orderBy">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Desending</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6" >
+            <div class="form-group">
+                <select class="form-control" placeholder="Search Customer..." name="customerAttr" formControlName="customerAttr"><!--ngModel required #customerAttr="ngModel">-->
+                    <option style="display: none;"  value="">Choose ... </option>
+                    <option value="customername" selected="selected">Customer name</option>
+                    <option value="product">Product</option>
+                    <option value="customertype">Customer Type</option>
+                    <option value="year">Year</option>
+                </select>
+        </div>
+  </div> 
+    
+</div>
+</form>  
+</div>
+<div class="row top-40" style="padding-top:65px">
+<div class="col-lg-4 grid-margin stretch-card bottom-30"   *ngFor="let pd of pd | filter : searchForm.value.searchTxt| sortBy:searchForm.value.orderBy:searchForm.value.customerAttr" (click)="cardClicked(pd)"><!--  (click)="cardClicked(qo)"-->
+    <div class="card card-weather" style="border-radius: 15px;">
+            <img class="card-img-top" src="../assets/img/app/bg-img.png" alt="Card image cap">
+            <div class="card-img-overlay" style="color:white;">               
+                    <h3 class="no-margin">{{pd.customername}}</h3>
+                    <!--<p class="card-text">TODAY {{date | date: 'dd.MM.yyyy'}}</p>-->
+                    <p class="card-text  card-font">25 October, 2019 CA, United States </p>
+              </div>
+        <div class="card-body p-0">
+            <div class="d-flex weakly-weather">
+                <div class="weakly-weather-item">
+                    <p class="mb-0"> Product </p>
+                    <i class="mdi mdi-weather-cloudy"></i>
+                    <p class="mb-0"> Premium </p>
+                </div>
+                <div class="weakly-weather-item">
+                    <p class="mb-1">Type</p>
+                    <i class="mdi mdi-weather-hail"></i>
+                    <p class="mb-0">Enterprice</p>
+                </div>
+                <div class="weakly-weather-item">
+                    <i class="mdi mdi-weather-partlycloudy"></i>
+                    <p class="mb-0"> 2019</p>
+                    <p class="mb-0"> Q1, Q2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
