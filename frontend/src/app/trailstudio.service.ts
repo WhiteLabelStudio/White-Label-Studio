@@ -98,6 +98,7 @@ feedback:f.feedback
 
   //Save Qualified Oppoetunity
   insertQualifiedOpportynity(f) {
+    console.log("saving QO : insertQualifiedOpportynity(f)");
     var QO = {
       customerid: f.customerId,
       customername: f.customerName,
@@ -115,6 +116,8 @@ feedback:f.feedback
       q3: f.q3 ? 'Yes' : 'No',
       q4: f.q4 ? 'Yes' : 'No',
       qualifiedopportubityflag: f.qualifiedOpportunity,
+      revenue: f.revenue,
+      salesengineer:f.salesEngineer,
       items:f.items
     };
     return this.http.post(`${this.uri}/QualifiedOpportunities/saveQO`, QO, httpOptions);
@@ -145,7 +148,8 @@ feedback:f.feedback
       items:f.items,
       status:f.status,
       revenue:f.revenue,
-      endcustomerflag:f.endCustomerFlag
+      endcustomerflag:f.endCustomerFlag,
+      salesengineer:f.salesEngineer
     };
     return this.http.post(`${this.uri}/QualifiedOpportunities/updateQO`, QO, httpOptions);
   }
@@ -239,7 +243,73 @@ feedback:f.feedback
   }
 
 
+  //login User (Get User Details)
+  getUser() {
+    console.log("I am in getUser of trailstudio.service");
+    return this.http.get(`${this.uri}/auth`);
+  }
 
+  getUserDetails(p){
+    const user = {
+      useremail: p.email
+    };
+    console.log("I am in showQualifiedOpportunities trailstudio.service");
+    return this.http.post(`${this.uri}/auth/getUser`, user, httpOptions);
+  }
+
+  //Register user
+  registerUser(p){
+    const user = {
+      email: p.email,
+      firstname:p.firstname,
+      lastname:p.lastname,
+      password:p.password
+    };
+    return this.http.post(`${this.uri}/auth/register`, user, httpOptions);
+  }
+
+ //login User (Get User Details)
+ getUser2() {
+  console.log("I am in getUser of trailstudio.service");
+  return this.http.get(`${this.uri}/auth2`);
+ }
+
+
+  getAllUsers(){
+    console.log("I am in showQualifiedOpportunities trailstudio.service");
+    return this.http.post(`${this.uri}/auth2/getUsers`, httpOptions);
+  }
+
+
+
+  //get Trail Details for Customer and Demo
+  getTrail() {
+    console.log("I am in getUser of trailstudio.service");
+    return this.http.get(`${this.uri}/trail`);
+   }
   
+  
+    getOpportunityTrailDetails(t){
+      console.log("These are customer and product Details",t);
+      const p = {
+        customerid:t.customerId,
+        interestedproduct:t.interestedProduct
+      };
+      return this.http.post(`${this.uri}/trail/getOpportunity`, p,httpOptions);
+    }
+
+    getTrailforDemo() {
+      console.log("I am in getUser of trailstudio.service");
+      return this.http.get(`${this.uri}/trailDemo`);
+     }
+
+    getDemoTrailDetails(t){
+      console.log("I am in showQualifiedOpportunities trailstudio.service");
+      const p = {
+        customerid:t.customerId,
+        interestedproduct:t.interestedProduct
+      };
+      return this.http.post(`${this.uri}/trailDemo/getDemo`,p, httpOptions);
+    }
 
 }

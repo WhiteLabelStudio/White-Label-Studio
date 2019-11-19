@@ -129,115 +129,6 @@
     background: rgba(18, 65, 145, 0.8);
 }
 
-
-
-   /* .row{
-        background: #e9ebee!important;
-        }*/
-    
-
-
-/*--------------------------------------------*/
-/*-------- SIGNUP AND PLANS ----------*/
-/*--------------------------------------------*/
-.img-container {
-    text-align: center;
-  }
-  
-.section-plans{
-    background-color: #f4f4f4;
-}
-
-.plan-box{
-    background-color: #ffff;
-    border-radius: 5px;
-    width:100%;
-    /*height:40%;*/
- margin-left: 0%;
-     box-shadow:0 5px 5px #eae6e6;
-}
-
-.plan-box div{
-   padding:15px;
-    border-bottom : 1px solid #d1d1d1;
-}
-
-.plan-price{
-   font-size:250%;
-    font-weight:100;
-    margin-bottom: 10px;
-    color:#e67e22;
-}
-
-.plan-price span{
-    font-size:30%;
-    font-weight:300;
-}
-
-.plan-price-meal{
-    font-size: 80%;
-}
-
-.plan-box ul{
-   list-style: none; 
-}
-
-.plan-box ul li{
-  padding:5px 0; 
-}
-
-.plan-box div:first-child{
-    background-color: #fcfcfc;
-    border-top-left-radius: 5px;
-    border-top-right-radius:5px;
-}
-
-.plan-box div:last-child{
-    text-align: center;
-    border:none;
-}
-
-.fa-thumbs-up{
-    font-size: 25px;
-    color: #3bad3bcc;
-    padding-right: 10px;
-}
-
-.fa-thumbs-down{
-    font-size: 25px;
-    color: #dc3545;
-    padding-right: 10px;
-}
-
-/* --------HEADINGS ---------*/
-
-    
-    .pakagesHeader{
-    font-size: 180%;
-    margin-bottom: 15px;
-    font-weight: 300;
-    text-transform: uppercase;
-    }
-    
-/*--------------------------------------------*/
-/*-------- ANIMATIONS ----------*/
-/*--------------------------------------------*/
-
-.js--wp-1,.js--wp-2,.js--wp-3{
-	opacity:0;/*then that element wont be visible*/
-	animation-duration: 1s;
-}
-
-.js--wp-4{
-	animation-duration: 1s;
-}
-
-.js--wp-3.animated{/*selector to add both classes at the same time*/
-	opacity:1;
-}
-
-
-
 /*----------------------------------------------------------*/
 /*------------------ CSS FOR IMAGE SELECTION ----------------------------*/
 /*----------------------------------------------------------*/
@@ -326,3 +217,101 @@
     -webkit-box-shadow: 0 0 0 1px #f58029, inset 0 1px 1px #b14f07;
     box-shadow: 0 0 0 1px #f58029, inset 0 1px 1px #b14f07;
   }
+
+  
+
+/*--------------------------------------------*/
+/*-------- SIGNUP AND PLANS ----------*/
+/*--------------------------------------------*/
+
+.section-plans{
+    background-color: #f4f4f4;
+}
+
+.plan-box{
+    background-color: #ffff;
+    border-radius: 5px;
+    width:90%;
+    /*height:40%;*/
+ margin-left: 5%;
+     box-shadow:0 5px 5px #eae6e6;
+}
+
+.plan-box div{
+   padding:15px;
+    border-bottom : 1px solid #d1d1d1;
+}
+
+.plan-price{
+   font-size:250%;
+    font-weight:100;
+    margin-bottom: 10px;
+    color:#e67e22;
+}
+
+.plan-price span{
+    font-size:30%;
+    font-weight:300;
+}
+
+.plan-price-meal{
+    font-size: 80%;
+}
+
+.plan-box ul{
+   list-style: none; 
+}
+
+.plan-box ul li{
+  padding:5px 0; 
+}
+
+.plan-box div:first-child{
+    background-color: #fcfcfc;
+    border-top-left-radius: 5px;
+    border-top-right-radius:5px;
+}
+
+.plan-box div:last-child{
+    text-align: center;
+    border:none;
+}
+
+.fa-thumbs-up{
+    font-size: 25px;
+    color: #3bad3bcc;
+    padding-right: 10px;
+}
+
+.fa-thumbs-down{
+    font-size: 25px;
+    color: #dc3545;
+    padding-right: 10px;
+}
+
+/* --------HEADINGS ---------*/
+
+    
+    .pakagesHeader{
+    font-size: 180%;
+    margin-bottom: 15px;
+    font-weight: 300;
+    text-transform: uppercase;
+    }
+
+
+
+.checkbox-primary{
+    background: green;
+}
+
+.headingClass:after {
+    display: block;
+    height: 2px;
+    background-color: #e67e22;
+    content: "";
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 12px;
+    margin-bottom: 15px;
+}

@@ -20,10 +20,10 @@ export class WizardComponent {
     constructor(private formBuilder: FormBuilder) {   
 
         this.steps = [
-          {name: 'Contact Details', icon: 'fa-lock', active: true, valid: false, hasError:false },
-          {name: 'Solution Request Details', icon: 'fa-user', active: false, valid: false, hasError:false },
-          {name: 'Selected Features', icon: 'fa-credit-card', active: false, valid: false, hasError:false },
-          {name: 'Trail Details', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
+          {name: 'Account Information', icon: 'fa-lock', active: true, valid: false, hasError:false },
+          {name: 'Personal Information', icon: 'fa-user', active: false, valid: false, hasError:false },
+          {name: 'Payment Information', icon: 'fa-credit-card', active: false, valid: false, hasError:false },
+          {name: 'Confirm Your Details', icon: 'fa-check-square-o', active: false, valid: false, hasError:false }
         ]
 
         this.accountForm = this.formBuilder.group({
@@ -66,7 +66,7 @@ export class WizardComponent {
         this.steps.some(function (step, index, steps) {
             if(index < steps.length-1){
                 if(step.active){
-                    if(step.name=='Contact Details'){
+                    if(step.name=='Account Information'){
                         if (accountForm.valid) {
                             step.active = false;
                             step.valid = true;
@@ -77,7 +77,7 @@ export class WizardComponent {
                             step.hasError = true;
                         }                      
                     }
-                    if(step.name=='Solution Request Details'){
+                    if(step.name=='Personal Information'){
                         if (personalForm.valid) {
                             step.active = false;
                             step.valid = true;
@@ -88,7 +88,7 @@ export class WizardComponent {
                             step.hasError = true;
                         }                      
                     }
-                    if(step.name=='Selected Features'){
+                    if(step.name=='Payment Information'){
                         if (paymentForm.valid) {
                             step.active = false;
                             step.valid = true;

@@ -4,7 +4,7 @@
             <div class="card-header">
                 <span>PRODUCT DEMONSTRATIONS</span>
                 <div class="widget-controls">
-                        <a href="#" class="transition" routerLink="/pages/pd-home"><i class="fa fa-reply"></i></a>
+                    <a href="#" class="transition" routerLink="/pages/pd-home"><i class="fa fa-reply"></i></a>
                     <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
                     <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
                     <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
@@ -12,334 +12,715 @@
                 </div>
             </div>
             <div class="card-body widget-body">
-                    <form [formGroup]="productDemosForm">
-                <div class="row" *ngIf="!demo">
-                   <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="project">Project</label>
-                            <select class="form-control" formControlName="project" id="project" name="project" (change)="defaultProjectDetails($event.target.value)">
-                                    <option *ngFor="let project of projects" value={{project.projectid}}>
-                                        {{project.customername}} for quater {{project.q1==='Yes'? ' Q1,':''}}{{project.q2==='Yes'? ' Q2,':''}}{{project.q3==='Yes'? ' Q3,':''}}{{project.q4==='Yes'? ' Q4':''}} in {{project.year}}
-                                    </option>
-                                </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <!--<div class="form-group">
-                            <label for="customerName">Customer Name</label>
-                            <input type="text" class="form-control"  formControlName="customerName">
-                        </div>-->
-                       <div class="form-group" >
-                                <label for="customerId">Customer Name&nbsp;&nbsp;<span style="color:red">*</span></label>
-                                <select class="form-control" formControlName="customerId" id="customerId" name="customerId" (change)="defaultCustomerDetails($event.target.value)">
+                <form [formGroup]="productDemosForm">
+
+                    <div class="row" *ngIf="demo">
+                        <div class="col-sm-12">
+                            <!--<div class="form-group">
+                                <label for="customerName">Customer Name</label>
+                                <input type="text" class="form-control"  formControlName="customerName">
+                            </div>-->
+                            <div class="form-group">
+                                <label for="customerId">Customer Name&nbsp;&nbsp;<span
+                                        style="color:red">*</span></label>
+                                <select class="form-control" formControlName="customerId" id="customerId"
+                                    name="customerId" (change)="defaultCustomerDetails($event.target.value)" style="
+                                    color: #4a525a;" readonly>
                                     <option *ngFor="let customer of customerInfo" value={{customer.customerid}}>
                                         {{customer.customername}}
                                     </option>
                                 </select>
                             </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row" *ngIf="demo">
-                         <div class="col-sm-12">
-                           <!--<div class="form-group">
-                                 <label for="customerName">Customer Name</label>
-                                 <input type="text" class="form-control"  formControlName="customerName">
-                             </div>-->
-                            <div class="form-group" >
-                                     <label for="customerId">Customer Name&nbsp;&nbsp;<span style="color:red">*</span></label>
-                                     <select class="form-control" formControlName="customerId" id="customerId" name="customerId" (change)="defaultCustomerDetails($event.target.value)">
-                                         <option *ngFor="let customer of customerInfo" value={{customer.customerid}}>
-                                             {{customer.customername}}
-                                         </option>
-                                     </select>
-                                 </div>
-                         </div>
-                     </div>
+                    <div class="row" *ngIf="!demo">
+                        <div class="col-sm-6">
+                            <!--<div class="form-group">
+                                      <label for="customerName">Customer Name</label>
+                                      <input type="text" class="form-control"  formControlName="customerName">
+                                  </div>-->
+                            <div class="form-group">
+                                <label for="customerId">Customer Name&nbsp;&nbsp;<span
+                                        style="color:red">*</span></label>
+                                <select class="form-control" formControlName="customerId" id="customerId"
+                                    name="customerId" (change)="defaultCustomerDetails($event.target.value)">
+                                    <option *ngFor="let customer of customerInfo" value={{customer.customerid}}>
+                                        {{customer.customername}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="project">Project</label>
+                                <select class="form-control" formControlName="project" id="project" name="project"
+                                    (change)="defaultProjectDetails($event.target.value)">
+                                    <option *ngFor="let project of projectDetailsforCust" value={{project.projectid}}>
+                                        {{project.customername}} for quater
+                                        {{project.q1==='Yes'? ' Q1,':''}}{{project.q2==='Yes'? ' Q2,':''}}{{project.q3==='Yes'? ' Q3,':''}}{{project.q4==='Yes'? ' Q4':''}}
+                                        in {{project.year}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="SCRMNumber">SCRM Number</label>
-                            <input type="text" class="form-control" formControlName="SCRMNumber">
-                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="expectedPOValue">Total Expected PO Value</label>
-                            <input type="text" class="form-control" formControlName="expectedPOValue">
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="noOfSites">Number of Sites</label>
-                            <input type="text" class="form-control" formControlName="noOfSites">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
 
-                        <div class="form-group">
-                            <label for="CPEType">Type of CPE required</label>
-                            <select class="form-control" formControlName="CPEType">
-                                <option>With LTE/Wifi/VNF</option>
-                                <option>Without LTE/Wifi/VNF</option>
-                            </select>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="SCRMNumber">SCRM Number</label>
+                                <input type="text" class="form-control" formControlName="SCRMNumber">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="expectedPOValue">Total Expected PO Value</label>
+                                <input type="text" class="form-control" formControlName="expectedPOValue">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="CPENumber">Number of CPE for each type</label>
-                            <input type="text" class="form-control" formControlName="CPENumber">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="expectedCPEPrice">Expected Price for CPE Type</label>
-                            <input type="text" class="form-control" formControlName="expectedCPEPrice">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="CPEYearlyGrowth">Projected Yearly CPE Growth</label>
-                            <input type="text" class="form-control" formControlName="CPEYearlyGrowth">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="expectedPOCDate">Expected POC Date</label>
-                            <input type="date" class="form-control" formControlName="expectedPOCDate">
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="expectedDeploymentDate">Expected Deployment Date</label>
-                            <input type="date" class="form-control" formControlName="expectedDeploymentDate">
-                        </div>
-                    </div>
-                    <div class="col-sm-6" style="    margin-left: -12px">
-                        <div class="col bottom-15">
-                            <h6>Existing VAN Service for this customer?</h6>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="VANServiceFlag1" type="radio" formControlName="VANServiceFlag" name="VANServiceFlag"
-                                    class="custom-control-input radio-primary" value="Yes" checked>
-                                <label class="custom-control-label" for="VANServiceFlag" checked>Yes</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="VANServiceFlag2" type="radio" formControlName="VANServiceFlag" name="VANServiceFlag"
-                                    class="custom-control-input radio-primary" value="No">
-                                <label class="custom-control-label" for="VANServiceFlag2">No</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="VANServiceFlag3" type="radio" formControlName="VANServiceFlag" name="VANServiceFlag"
-                                    class="custom-control-input radio-primary" value="Maybe">
-                                <label class="custom-control-label" for="VANServiceFlag3">Maybe</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6" style="    margin-left: -12px">
-                        <div class="col bottom-15">
-                            <h6>Intergration to existing CE?</h6>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="CEIntegrationFlag1" type="radio" formControlName="CEIntegrationFlag" name="CEIntegrationFlag"
-                                    class="custom-control-input radio-primary" value="Yes" checked>
-                                <label class="custom-control-label" for="CEIntegrationFlag1">Yes</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="CEIntegrationFlag2" type="radio" formControlName="CEIntegrationFlag" name="CEIntegrationFlag"
-                                    class="custom-control-input radio-primary" value="No">
-                                <label class="custom-control-label" for="CEIntegrationFlag2">No</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="CEIntegrationFlag3" type="radio" formControlName="CEIntegrationFlag" name="CEIntegrationFlag"
-                                    class="custom-control-input radio-primary" value="Maybe">
-                                <label class="custom-control-label" for="CEIntegrationFlag3">Maybe</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col bottom-15">
-                            <h6>Does the customer have DC?</h6>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="DCFlag1" type="radio" formControlName="DCFlag" name="DCFlag"
-                                    class="custom-control-input radio-primary" value="Yes" checked>
-                                <label class="custom-control-label" for="DCFlag1">Yes</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="DCFlag2" type="radio" formControlName="DCFlag" name="DCFlag"
-                                    class="custom-control-input radio-primary" value="No">
-                                <label class="custom-control-label" for="DCFlag2">No</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="DCFlag3" type="radio" formControlName="DCFlag" name="DCFlag"
-                                    class="custom-control-input radio-primary" value="Maybe">
-                                <label class="custom-control-label" for="DCFlag3">Maybe</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6" style="    margin-left: -12px">
-                        <div class="col bottom-15">
-                            <h6>Existing underlaylink provider?</h6>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="underlaylink1" type="radio" formControlName="underlaylink" name="underlaylink"
-                                    class="custom-control-input radio-primary" value="Yes" checked>
-                                <label class="custom-control-label" for="underlaylink1">Yes</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="underlaylink2" type="radio" formControlName="underlaylink" name="underlaylink"
-                                    class="custom-control-input radio-primary" value="No">
-                                <label class="custom-control-label" for="underlaylink2">No</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="underlaylink3" type="radio" formControlName="underlaylink" name="underlaylink"
-                                    class="custom-control-input radio-primary" value="Maybe">
-                                <label class="custom-control-label" for="underlaylink3">Maybe</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col bottom-15">
-                            <h6>Interested in Product?</h6>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="interestedProduct1" type="radio" formControlName="interestedProduct" name="interestedProduct"
-                                    class="custom-control-input radio-primary" value="Yes" checked>
-                                <label class="custom-control-label" for="interestedProduct1">Yes</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="interestedProduct2" type="radio"  formControlName="interestedProduct" name="interestedProduct"
-                                    class="custom-control-input radio-primary" value="No">
-                                <label class="custom-control-label" for="interestedProduct2">No</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="interestedProduct3" type="radio" formControlName="interestedProduct" name="interestedProduct"
-                                    class="custom-control-input radio-primary" value="Maybe">
-                                <label class="custom-control-label" for="interestedProduct3">Maybe</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <div class="row">
 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="demoedProduct">Demoed Product</label>
-                            <select class="form-control" formControlName="demoedProduct">
-                                <option>Premium</option>
-                                <option>Basic</option>
-                                <option>Advanced</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="demoDate">Demo Date</label>
-                            <input type="date" class="form-control" formControlName="demoDate">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <label for="webExUrl">Demo WebEx URL</label>
-                            <input type="text" class="form-control" formControlName="webExUrl">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="demoSalesEngineer">Sales Engineer Resource</label>
-                            <input type="text" class="form-control" formControlName="demoSalesEngineer">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="IPCCResource">IPCC Resource</label>
-                            <input type="text" class="form-control" formControlName="IPCCResource">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="accountManager">Account Manager</label>
-                            <input type="text" class="form-control" formControlName="accountManager">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="competitor">Competitors</label>
-                            <input type="text" class="form-control" formControlName="competitor">
-                        </div>
-                    </div>
-                </div>
-                <!--  <div class="row">
-                    <div class="col-sm-6" style="    margin-left: -12px">
-                        <div class="col bottom-15">
-                            <h6>Interested in Product?</h6>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="radio1" type="radio" name="radioInline" class="custom-control-input" checked>
-                                <label class="custom-control-label" for="radio1">Yes</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="radio2" type="radio" name="radioInline" class="custom-control-input">
-                                <label class="custom-control-label" for="radio2">No</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input id="radio3" type="radio" name="radioInline" class="custom-control-input">
-                                <label class="custom-control-label" for="radio3">Maybe</label>
+                        <div class="col-sm-12">
+
+                            <div class="form-group">
+                                <label for="CPEType">Type of CPE required</label>
+                                <select class="form-control" formControlName="CPEType">
+                                    <option>With LTE/Wifi/VNF</option>
+                                    <option>Without LTE/Wifi/VNF</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                   <div class="col-sm-6" style="    margin-left: -12px">
-                        <div class="form-check">
-                            <h6>Attachments</h6>
-                           <az-file-uploader></az-file-uploader>
-                         <div class="form-group">
-                                <div class="input-group file-upload">
-                                    <input type="file" (change)="fileChange(input)" #input class="file-upload-btn"/>
-                                    <input type="text" class="form-control" placeholder="Choose a file..." value="{{file}}">
-                                    <i class="fa fa-times delete-file" (click)="removeFile()" *ngIf="file"></i>
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button"><i class="fa fa-upload"></i></button>
-                                    </span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="CPENumber">Number of CPE for each type</label>
+                                <input type="text" class="form-control" formControlName="CPENumber">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="expectedCPEPrice">Expected Price for CPE Type</label>
+                                <input type="text" class="form-control" formControlName="expectedCPEPrice">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="CPEYearlyGrowth">Projected Yearly CPE Growth</label>
+                                <input type="text" class="form-control" formControlName="CPEYearlyGrowth">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="expectedPOCDate">Expected POC Date</label>
+                                <input type="date" class="form-control" formControlName="expectedPOCDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="expectedDeploymentDate">Expected Deployment Date</label>
+                                <input type="date" class="form-control" formControlName="expectedDeploymentDate">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="demoDate">Demo Date</label>
+                                <input type="date" class="form-control" formControlName="demoDate">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="webExUrl">Demo WebEx URL</label>
+                                <input type="text" class="form-control" formControlName="webExUrl">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="competitor">Competitors</label>
+                                <input type="text" class="form-control" formControlName="competitor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="speedUnderlayConn">Speed of Underlay connection</label>
+                                <input type="text" class="form-control" formControlName="accountManager">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="expectedThroughputReq">Expected throughput requirement for each Branch using
+                                    SD-WAN</label>
+                                <input type="text" class="form-control" formControlName="expectedThroughputReq">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="OtherAppReq">Other application requirement</label>
+                                <input type="text" class="form-control" formControlName="OtherAppReq">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="internetBreakoutReq">Internet Breakout requirement</label>
+                                <input type="text" class="form-control" formControlName="accountManager">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6" style="    margin-left: -12px;
+                        ">
+                            <div class="col bottom-15">
+                                <h6>Routing requirement?</h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="routingReq1" type="radio" formControlName="routingReq" name="routingReq"
+                                        class="custom-control-input radio-primary" value="BGP" checked>
+                                    <label class="custom-control-label" for="routingReq1">BGP</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="routingReq2" type="radio" formControlName="routingReq" name="routingReq"
+                                        class="custom-control-input radio-primary" value="OSPF">
+                                    <label class="custom-control-label" for="routingReq2">OSPF</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="routingReq3" type="radio" formControlName="routingReq" name="routingReq"
+                                        class="custom-control-input radio-primary" value="None">
+                                    <label class="custom-control-label" for="routingReq3">None</label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>-->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <textarea class="form-control"  formControlName="feedback" placeholder="Summary of Customer Feedback"
-                                rows="3"></textarea>
+                    <div class="row">
+
+                        <div class="col-sm-6" style="    margin-left: -12px;
+                        ">
+                            <div class="col bottom-15">
+                                <h6>Existing WAN Service for this customer?</h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="VANServiceFlag1" type="radio" formControlName="VANServiceFlag"
+                                        name="VANServiceFlag" class="custom-control-input radio-primary" value="Yes"
+                                        checked>
+                                    <label class="custom-control-label" for="VANServiceFlag1" checked>Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="VANServiceFlag2" type="radio" formControlName="VANServiceFlag"
+                                        name="VANServiceFlag" class="custom-control-input radio-primary" value="No">
+                                    <label class="custom-control-label" for="VANServiceFlag2">No</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="VANServiceFlag3" type="radio" formControlName="VANServiceFlag"
+                                        name="VANServiceFlag" class="custom-control-input radio-primary" value="Maybe">
+                                    <label class="custom-control-label" for="VANServiceFlag3">Maybe</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <div class="col bottom-15">
+                                <h6>Intergration to existing Customer Environment ?</h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="CEIntegrationFlag1" type="radio" formControlName="CEIntegrationFlag"
+                                        name="CEIntegrationFlag" class="custom-control-input radio-primary" value="Yes"
+                                        checked>
+                                    <label class="custom-control-label" for="CEIntegrationFlag1">Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="CEIntegrationFlag2" type="radio" formControlName="CEIntegrationFlag"
+                                        name="CEIntegrationFlag" class="custom-control-input radio-primary" value="No">
+                                    <label class="custom-control-label" for="CEIntegrationFlag2">No</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="CEIntegrationFlag3" type="radio" formControlName="CEIntegrationFlag"
+                                        name="CEIntegrationFlag" class="custom-control-input radio-primary"
+                                        value="Maybe">
+                                    <label class="custom-control-label" for="CEIntegrationFlag3">Maybe</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-6" style="    margin-left: -12px;
+                            ">
+                            <div class="col bottom-15">
+                                <h6>Does the customer have existing DC?</h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="DCFlag1" type="radio" formControlName="DCFlag" name="DCFlag"
+                                        class="custom-control-input radio-primary" value="Yes" checked>
+                                    <label class="custom-control-label" for="DCFlag1" checked>Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="DCFlag2" type="radio" formControlName="DCFlag" name="DCFlag"
+                                        class="custom-control-input radio-primary" value="No">
+                                    <label class="custom-control-label" for="DCFlag2">No</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="DCFlag3" type="radio" formControlName="DCFlag" name="DCFlag"
+                                        class="custom-control-input radio-primary" value="Maybe">
+                                    <label class="custom-control-label" for="DCFlag3">Maybe</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="col bottom-15">
+                                <h6>Interested in POC?</h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="interestedProduct1" type="radio" formControlName="interestedProduct"
+                                        name="interestedProduct" class="custom-control-input radio-primary" value="Yes"
+                                        checked>
+                                    <label class="custom-control-label" for="interestedProduct1">Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="interestedProduct2" type="radio" formControlName="interestedProduct"
+                                        name="interestedProduct" class="custom-control-input radio-primary" value="No">
+                                    <label class="custom-control-label" for="interestedProduct2">No</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="interestedProduct3" type="radio" formControlName="interestedProduct"
+                                        name="interestedProduct" class="custom-control-input radio-primary"
+                                        value="Maybe">
+                                    <label class="custom-control-label" for="interestedProduct3">Maybe</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6" style="    margin-left: -12px">
+                            <div class="col bottom-15">
+                                <h6>Existing underlaylink provider?</h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="underlaylink1" type="radio" formControlName="underlaylink"
+                                        name="underlaylink" class="custom-control-input radio-primary" value="Yes"
+                                        checked>
+                                    <label class="custom-control-label" for="underlaylink1">Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="underlaylink2" type="radio" formControlName="underlaylink"
+                                        name="underlaylink" class="custom-control-input radio-primary" value="No">
+                                    <label class="custom-control-label" for="underlaylink2">No</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="underlaylink3" type="radio" formControlName="underlaylink"
+                                        name="underlaylink" class="custom-control-input radio-primary" value="Maybe">
+                                    <label class="custom-control-label" for="underlaylink3">Maybe</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="margin-left: 12px">
+                            <div class="form-group">
+                                <label for="linkProvider">Link Provided</label>
+                                <input type="text" class="form-control" name="linkProvider"
+                                    formControlName="linkProvider" *ngIf="productDemosForm.value.underlaylink==='Yes'">
+                                <input type="text" class="form-control"
+                                    *ngIf="productDemosForm.value.underlaylink!=='Yes'" name="linkProvider" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6" style="    margin-left: -12px">
+
+                            <div class="col bottom-15">
+                                <h6>Existing Customer Applications through the WAN link?</h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="ExistingCustApp1" type="radio" formControlName="ExistingCustApp"
+                                        name="ExistingCustApp" class="custom-control-input radio-primary" value="Yes"
+                                        checked>
+                                    <label class="custom-control-label" for="ExistingCustApp1">Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="ExistingCustApp2" type="radio" formControlName="ExistingCustApp"
+                                        name="ExistingCustApp" class="custom-control-input radio-primary" value="No">
+                                    <label class="custom-control-label" for="ExistingCustApp2">No</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="ExistingCustApp3" type="radio" formControlName="ExistingCustApp"
+                                        name="ExistingCustApp" class="custom-control-input radio-primary" value="Maybe">
+                                    <label class="custom-control-label" for="ExistingCustApp3">Maybe</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <div class="col bottom-15">
+                                <h6>Internet Brackout Requirement?</h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="internetBreakoutReq1" type="radio" formControlName="internetBreakoutReq"
+                                        name="internetBreakoutReq" class="custom-control-input radio-primary"
+                                        value="Yes" checked>
+                                    <label class="custom-control-label" for="internetBreakoutReq1">Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="internetBreakoutReq2" type="radio" formControlName="internetBreakoutReq"
+                                        name="internetBreakoutReq" class="custom-control-input radio-primary"
+                                        value="No">
+                                    <label class="custom-control-label" for="internetBreakoutReq2">No</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="internetBreakoutReq3" type="radio" formControlName="internetBreakoutReq"
+                                        name="internetBreakoutReq" class="custom-control-input radio-primary"
+                                        value="Maybe">
+                                    <label class="custom-control-label" for="internetBreakoutReq3">Maybe</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="col-sm-6" style="    margin-left: -12px;    margin-top: 15px;
+                        ">
+                            <div class="col bottom-15">
+                                    <h6>Existing WAN Service for this customer?</h6>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="VANServiceFlag1" type="radio" formControlName="VANServiceFlag" name="VANServiceFlag"
+                                            class="custom-control-input radio-primary" value="Yes" checked>
+                                        <label class="custom-control-label" for="VANServiceFlag" checked>Yes</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="VANServiceFlag2" type="radio" formControlName="VANServiceFlag" name="VANServiceFlag"
+                                            class="custom-control-input radio-primary" value="No">
+                                        <label class="custom-control-label" for="VANServiceFlag2">No</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="VANServiceFlag3" type="radio" formControlName="VANServiceFlag" name="VANServiceFlag"
+                                            class="custom-control-input radio-primary" value="Maybe">
+                                        <label class="custom-control-label" for="VANServiceFlag3">Maybe</label>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-sm-6" style="    margin-left: -12px">
+                                <div class="form-check">
+                                    <h6>Attachments</h6>
+                                   <az-file-uploader></az-file-uploader>
+                                 <div class="form-group">
+                                        <div class="input-group file-upload">
+                                            <input type="file" (change)="fileChange(input)" #input class="file-upload-btn"/>
+                                           <!-- <input type="text" class="form-control" placeholder="Choose a file..." value="{{file}}">
+                                            <i class="fa fa-times delete-file" (click)="removeFile()" *ngIf="file"></i>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="button"><i class="fa fa-upload"></i></button>
+                                            </span>-->
+                    <!--  </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>-->
+                    <div class="row">
+                        <div class="col-sm-6" style="    margin-left: -12px">
+                            <!--  <div class="form-group">
+                                <label for="demoedProduct">Demoed Product</label>
+                                <select class="form-control" formControlName="demoedProduct">
+                                    <option>Premium</option>
+                                    <option>Basic</option>
+                                    <option>Advanced</option>
+                                </select>
+                            </div>-->
+
+                            <div class="col bottom-15">
+                                <h6>Is the customer using a private or public cloud? </h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="cloudFlag1" type="radio" formControlName="cloudFlag" name="cloudFlag"
+                                        class="custom-control-input radio-primary" value="public" checked>
+                                    <label class="custom-control-label" for="cloudFlag1" checked>Public</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="cloudFlag2" type="radio" formControlName="cloudFlag" name="cloudFlag"
+                                        class="custom-control-input radio-primary" value="private">
+                                    <label class="custom-control-label" for="cloudFlag2">Private</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="cloudFlag3" type="radio" formControlName="cloudFlag" name="cloudFlag"
+                                        class="custom-control-input radio-primary" value="nocloud">
+                                    <label class="custom-control-label" for="cloudFlag3">No Cloud</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="  margin-left:11px">
+                            <div class="form-group">
+                                <label for="vendor">Vendor</label>
+                                <input type="text" class="form-control" name="vendor" formControlName="vendor"
+                                    *ngIf="productDemosForm.value.cloudFlag==='public'">
+                                <input type="text" class="form-control"
+                                    *ngIf="productDemosForm.value.cloudFlag!=='public'" name="vendor" disabled>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6" style="    margin-left: -12px">
+                            <div class="col bottom-15">
+                                <h6>Is the customer same as end customer? </h6>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="endCustomerFlag1" type="radio" formControlName="endCustomerFlag"
+                                        name="endCustomerFlag" class="custom-control-input radio-primary" value="Yes"
+                                        checked>
+                                    <label class="custom-control-label" for="endCustomerFlag1" checked>Yes</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input id="endCustomerFlag2" type="radio" formControlName="endCustomerFlag"
+                                        name="endCustomerFlag" class="custom-control-input radio-primary" value="No">
+                                    <label class="custom-control-label" for="endCustomerFlag2">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="  margin-left:11px">
+                            <div class="form-group">
+                                <label for="noOfSites">Number of Sites</label>
+                                <input type="text" class="form-control" name="noOfSites" formControlName="noOfSites"
+                                    *ngIf="productDemosForm.value.endCustomerFlag==='Yes'">
+                                <input type="text" class="form-control"
+                                    *ngIf="productDemosForm.value.endCustomerFlag!=='Yes'" name="noOfSites" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="productDemosForm.value.endCustomerFlag!=='Yes'">
+                        <div formArrayName="endCustDt"
+                            *ngFor="let endCustDt of productDemosForm.get('endCustDt').controls; let i = index;">
+                            <br>
+                            <div class="card card-outline-default">
+                                <div class="card-body" [formGroupName]="i">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label [for]="endCustomerName">End Customer Name&nbsp;&nbsp;<span
+                                                        style="color:red">*</span></label>
+                                                <input type="text" class="form-control" [id]="endCustomerName"
+                                                    formControlName="endCustomerName">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="form-group">
+                                                <label [for]="siteNumber">Customer Site Number</label>
+                                                <input type="text" class="form-control" [id]="siteNumber"
+                                                    formControlName="siteNumber">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div style="    margin-top: 21px;">
+                                                <a class="addBtn addBtn-color" style="z-index:0"
+                                                    (click)="addEndCustomer()">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a class="addBtn removeBtn-color" style="z-index:0"
+                                                    (click)="removeEndCustomer(i)">x</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div formArrayName="contact"
+                        *ngFor="let contact of productDemosForm.get('contact').controls; let i = index;">
+                        <br>
+                        <div class="card card-outline-default" style="background: #ebebeb;">
+                            <div class="card-body" [formGroupName]="i">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label [for]="salesEngineer">Sales Engineer</label>
+                                            <input type="text" class="form-control" [id]="salesEngineer"
+                                                formControlName="salesEngineer">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label [for]="IPCCResource">IPCC Resource</label>
+                                            <input type="text" class="form-control" [id]="IPCCResource"
+                                                formControlName="IPCCResource">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div style="    margin-top: 21px;">
+                                            <a class="addBtn addBtn-color" style="z-index:0"
+                                                (click)="addSalesContact()">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a class="addBtn removeBtn-color" style="z-index:0"
+                                                (click)="removeSalesContact(i)">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label [for]="accountManager">AccountManager</label>
+                                            <input type="text" class="form-control" [id]="accountManager"
+                                                formControlName="accountManager">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label [for]="projectManger">Technical Project Manager</label>
+                                            <input type="text" class="form-control" [id]="projectManger"
+                                                formControlName="projectManger">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                    <div formArrayName="items"
+                        *ngFor="let item of productDemosForm.get('items').controls; let i = index;">
+                        <br>
+                        <div class="card card-outline-default">
+                            <div class="card-body" [formGroupName]="i">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label [for]="name">Customer Contact Name&nbsp;&nbsp;<span
+                                                    style="color:red">*</span></label>
+                                            <input type="text" class="form-control" [id]="name" formControlName="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div style="    margin-top: 21px;">
+                                            <a class="addBtn addBtn-color" style="z-index:0"
+                                                (click)="addContacts()">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a class="addBtn removeBtn-color" style="z-index:0"
+                                                (click)="removeContact(i)">x</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label [for]="jobTitle">Customer Job Title</label>
+                                            <input type="text" class="form-control" [id]="jobTitle"
+                                                formControlName="jobTitle">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label [for]="contactEmail">Customer Contact Email</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                                </div>
+                                                <input class="form-control" type="text" [id]="contactEmail"
+                                                    formControlName="contactEmail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label [for]="contactPhone">Customer Contact Phone</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                                </div>
+                                                <input class="form-control" type="number" [id]="contactPhone"
+                                                    formControlName="contactPhone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="competitor">Summary of Customer Feedback</label>
+                                <textarea class="form-control" formControlName="feedback" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div formArrayName="items"
+                *ngFor="let item of qualifiedOpportunitiesForm.get('items').controls; let i = index;">
+                <br>
+                <div class="card card-outline-default">
+                    <div class="card-body" [formGroupName]="i">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label [for]="name">Customer Contact Name&nbsp;&nbsp;<span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" [id]="name" formControlName="name">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div style="    margin-top: 21px;">
+                                    <a class="addBtn addBtn-color" style="z-index:0"
+                                        (click)="addContacts()">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a class="addBtn removeBtn-color" style="z-index:0"
+                                        (click)="removeContact(i)">x</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label [for]="jobTitle">Customer Job Title</label>
+                                    <input type="text" class="form-control" [id]="jobTitle"
+                                        formControlName="jobTitle">
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label [for]="contactEmail">Customer Contact Email</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                        </div>
+                                        <input class="form-control" type="text" [id]="contactEmail"
+                                            formControlName="contactEmail">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label [for]="contactPhone">Customer Contact Phone</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                        </div>
+                                        <input class="form-control" type="number" [id]="contactPhone"
+                                            formControlName="contactPhone">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </form>
+                <br>
+            </div>-->
+                </form>
 
 
                 <div class="row">
-                        <div class="col-12">
-                            <button class="btn btn-main pull-left" routerLink="/pages/pd-home"><i
-                                    class="fa fa-chevron-left arrow"></i>&nbsp;Back</button>
-                            <button class="btn btn-main pull-right"
-                            (click)="saveProductDemo()"><i class="fa fa-check arrow"></i>&nbsp;Submit </button>
-                        </div>
+                    <div class="col-12">
+                        <button class="btn btn-main pull-left" routerLink="/pages/pd-home"><i
+                                class="fa fa-chevron-left arrow"></i>&nbsp;Back</button>
+                        <button class="btn btn-main pull-right" (click)="saveProductDemo()"><i
+                                class="fa fa-check arrow"></i>&nbsp;Submit </button>
                     </div>
+                </div>
 
 
             </div>

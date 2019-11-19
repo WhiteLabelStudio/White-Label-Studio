@@ -92,7 +92,7 @@ export class OpportunityDetailsComponent implements OnInit {
               .getProject()
               .subscribe((data) => {
                 this.projectInfo = data;
-                console.log(this.projectInfo[0].items[0]);
+                console.log(this.projectInfo[0]);
                 this.qualifiedOpportunitiesForm = this.formBuilder.group({
                   customerId: [this.projectInfo[0].customerid],
                   customerName: [this.projectInfo[0].customername],
@@ -112,6 +112,7 @@ export class OpportunityDetailsComponent implements OnInit {
                   year: [this.projectInfo[0].year],
                   status: [this.projectInfo[0].status],
                   revenue: [this.projectInfo[0].revenue],
+                  salesEngineer: [this.projectInfo[0].salesEngineer],
                   items: this.formBuilder.array(
                     this.getAllItems(this.projectInfo[0].items))
                 });
@@ -170,6 +171,7 @@ export class OpportunityDetailsComponent implements OnInit {
       status: [''],
       endCustomerInfrastructure: [''],
       revenue: [''],
+      salesEngineer:[''],
       items: this.formBuilder.array([this.createItem()])
     });
   }
@@ -350,8 +352,10 @@ export class OpportunityDetailsComponent implements OnInit {
       state: [newArray[0].state],
       year: ['2019'],
       status: ['Active'],
-      endCustomerInfrastructure: ['']
-      , items: this.formBuilder.array([this.createItem()])
+      endCustomerInfrastructure: [''],
+      revenue: [''],
+      salesEngineer:[''],
+      items: this.formBuilder.array([this.createItem()])
     });
   }
 
@@ -394,14 +398,12 @@ export class OpportunityDetailsComponent implements OnInit {
   }
   //Save Qualified Opportunity
   saveQualifiedOpportunity() {
-    console.log(this.update);
-    
+    console.log("saveQualifiedOpportunity() called.....");
       this.submitted = true;
       if (this.qualifiedOpportunitiesForm.value.endCustomerFlag === "Yes") {
         this.qualifiedOpportunitiesForm.value.endCustomerName = '';
         this.qualifiedOpportunitiesForm.value.endCustomerInfrastructure = '';
       }
-
       if (!this.qualifiedOpportunitiesForm.value.customerName) {
         this.toastrService.error('Please select customer name.', 'Missing Values');
       } else if (this.itemsValidation()) {
@@ -419,6 +421,7 @@ export class OpportunityDetailsComponent implements OnInit {
           });
         } else {
         this.toastrService.success('Qualified Opportunity submitted succcessfully.', 'Thank You :)');
+        console.log(this.qualifiedOpportunitiesForm.value);
         this.trailstudio
           .insertQualifiedOpportynity(this.qualifiedOpportunitiesForm.value)
           .subscribe((data) => {

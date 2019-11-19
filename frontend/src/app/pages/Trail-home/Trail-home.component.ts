@@ -4,71 +4,55 @@ import { Router } from '@angular/router';
 import { Pipe, PipeTransform } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
-import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'pd-home',
+  selector: 'Trail-home',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './pd-home.component.html',
-  styleUrls: ['./pd-home.component.scss']
+  templateUrl: './Trail-home.component.html',
+  styleUrls: ['./Trail-home.component.scss']
 })
 
-export class PDComponent implements OnInit {
+export class TrailComponent implements OnInit {
 
-  pd:any;
-  f: NgForm;
+  qo:any;
   searchForm: FormGroup;
   constructor(private trailstudio: TrailstudioService,private router: Router,private formBuilder: FormBuilder) { }
   
   ngOnInit() {
-
     this.searchForm = this.formBuilder.group({
       searchTxt: [''],
       orderBy: ['asc'],
       customerAttr: [''],
     });
-
-    this.findProductDemos();
-    //console.log("this is the test value : ",this.f.value.orderBy);
+    this.findQualifiedOpportunity();
   }
 
 
-
-   //Get All PD Details
-   getProductDemos() {
+   //Get All Customer Details
+   getQualifiedOpprtunity() {
     this.trailstudio
-      .getProductDemos()
+      .getQualifiedOpportunities()
       .subscribe((data) => {
         console.log(data);
-        this.pd = data;
-        for(var i=0;i<this.pd.length;i++){
-          console.log(this.pd[i].q1);
-this.pd[i].q1 = (this.pd[i].q1)==='Yes'?'Q1':'';
-this.pd[i].q2 = (this.pd[i].q2)==='Yes'?'Q2':'';
-this.pd[i].q3 = (this.pd[i].q3)==='Yes'?'Q3':'';
-this.pd[i].q4 = (this.pd[i].q4)==='Yes'?'Q4':'';
-var text = [this.pd[i].q1, this.pd[i].q2, this.pd[i].q3, this.pd[i].q4].filter(Boolean).join(", ");
-console.log(text)
-this.pd[i].quater = text;
-        }
-        console.log("I am called again for product demos..",data);
+        this.qo = data;
+        console.log("I am called again..",this.qo);
       });
   }
 
 
-  findProductDemos() {
+  findQualifiedOpportunity() {
     this.trailstudio
-      .getAllProductDemos()
+      .getAllQualifiedOpportunities()
       .subscribe((data) => {
-        this.getProductDemos();
+        this.getQualifiedOpprtunity();
       });
   }
 
   cardClicked(qo){
-    this.router.navigate(['/pages/productdemo'],{ queryParams: { demoid: qo.demoid} });
+    this.router.navigate(['/pages/qualifiedopportunities'],{ queryParams: { projectid: qo.projectid} });
   }
 
-  /*public firstControlModel: number[];
+  public firstControlModel: number[];
   public firstControlOptions: IMultiSelectOption[] = [
     { id: 1, name: 'Option 1' },
     { id: 2, name: 'Option 2' },
@@ -128,6 +112,5 @@ this.pd[i].quater = text;
 
   public changeOrderBy() {
       console.log(this.firstControlModel);
-  }*/
-
+  }
 }

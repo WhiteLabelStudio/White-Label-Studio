@@ -27,6 +27,10 @@ export class ProductDemoComponent implements OnInit {
   q2: any;
   q3: any;
   q4: any;
+  projectDetailsforCust: any;
+  items: FormArray;
+  endCustDt : FormArray;
+  contact : FormArray;
 
 
 
@@ -116,19 +120,125 @@ export class ProductDemoComponent implements OnInit {
       webExUrl: [''],
       noOfSites: [''],
       demoSalesEngineer: [''],
-      IPCCResource: [''],
-      accountManager: [''],
       competitor: [''],
-      feedback: ['']
+      speedUnderlayConn: [''],
+      expectedThroughputReq: [''],
+      internetBreakoutReq: ['Yes'],
+      routingReq: ['BGP'],
+      cloudFlag:['public'],
+      vendor:[''],
+      feedback: [''],
+      linkProvider:[''],
+      ExistingCustApp:['Yes'],
+      endCustomerFlag:['Yes'],
+      items: this.formBuilder.array([this.createItem()]),
+      endCustDt:this.formBuilder.array([this.createEndCustomer()]),
+      contact:this.formBuilder.array([this.createSalesContact()]),
     });
   }
+
+  createSalesContact(){
+    return this.formBuilder.group({
+      salesEngineer: '',
+      IPCCResource: '',
+      accountManager: '',
+      projectManger: '',
+    });
+  }
+  addSalesContact(item) {
+    this.contact = this.productDemosForm.get('contact') as FormArray;
+    this.contact.push(this.createSalesContact());
+  }
+
+
+  removeSalesContact(index) {
+    // remove the row specified in index
+    if (index != 0) {
+      (this.productDemosForm.controls.contact as FormArray).controls.splice(index, 1);
+      this.productDemosForm.value.contact.splice(index, 1);
+    } else {
+      alert("Please enter atleast one customer contact..");
+    }
+  }
+
+
+  createEndCustomer(){
+    return this.formBuilder.group({
+      endCustomerName: '',
+      jobTitle: '',
+    });
+  }
+
+  addEndCustomer(item) {
+    this.endCustDt = this.productDemosForm.get('endCustDt') as FormArray;
+    this.endCustDt.push(this.createEndCustomer());
+  }
+
+  removeEndCustomer(index) {
+    // remove the row specified in index
+    if (index != 0) {
+      (this.productDemosForm.controls.endCustDt as FormArray).controls.splice(index, 1);
+      this.productDemosForm.value.endCustDt.splice(index, 1);
+    } else {
+      alert("Please enter atleast one customer contact..");
+    }
+  }
+
+
+  createItem() {
+    return this.formBuilder.group({
+      name: '',
+      jobTitle: '',
+      contactEmail: '',
+      contactPhone: ''
+    });
+  }
+
+  
+  addContacts(item) {
+    this.items = this.productDemosForm.get('items') as FormArray;
+    this.items.push(this.createItem());
+
+
+
+  }
+
+  removeContact(index) {
+    // remove the row specified in index
+    if (index != 0) {
+      (this.productDemosForm.controls.items as FormArray).controls.splice(index, 1);
+      this.productDemosForm.value.items.splice(index, 1);
+    } else {
+      alert("Please enter atleast one customer contact..");
+    }
+  }
+
+
+ //this.projectInfo[0].
+ getAllItems(arr) {
+  var contactsArr = [];
+  for (var i = 0; i < arr.length; i++) {
+    var contactObj = this.formBuilder.group({
+      name: arr[i].name,
+      contactPhone: arr[i].contactPhone,
+      jobTitle: arr[i].jobTitle,
+      contactEmail: arr[i].contactEmail
+    })
+    contactsArr.push(contactObj);
+  }
+  return contactsArr;
+}
 
 
   defaultCustomerDetails(cust) {
     var newArray = this.customerInfo.filter(function (item) {
       return item.customerid == cust;
     });
-    console.log(newArray[0]);
+    console.log("These are the project details:......", this.projects);
+    this.projectDetailsforCust = this.projects.filter(function (item) {
+      return item.customerid == cust;
+    });
+    console.log("Getting all customer details", this.projectDetailsforCust[0]);
     this.productDemosForm.value.customerName = newArray[0].customername;
   }
 
@@ -136,14 +246,15 @@ export class ProductDemoComponent implements OnInit {
     var newArray123 = this.projects.filter(function (item) {
       return item.projectid == proj;
     });
-    console.log(newArray123[0]);
     this.productDemosForm.value.customerName = newArray123[0].customername;
     this.productDemosForm.value.customerId = newArray123[0].customerid;
-
-    this.productDemosForm.patchValue({
-      customerName: [newArray123[0].customername],
-      customerId: [newArray123[0].customerid]
-    });
+    this.productDemosForm.value.demoedProduct = newArray123[0].interestedproduct
+    console.log("these are the project details", newArray123[0].interestedproduct);
+    /* this.productDemosForm.patchValue({
+       customerName: [newArray123[0].customername],
+       customerId: [newArray123[0].customerid],
+       demoedProduct:[newArray123[0].interestedproduct],
+     });*/
   }
 
 
@@ -190,26 +301,27 @@ export class ProductDemoComponent implements OnInit {
 
 
   saveProductDemo() {
-    console.log(this.productDemosForm.value);
-    console.log(this.update);
-     if (this.update) {
-       this.toastrService.success('Product Demos updated succcessfully.', 'Thank You :)');
-       this.productDemosForm.value.demoid = this.demo;
-        //update code
-        this.trailstudio
+    console.log("saveProductDemo() function in Opportunity Details.....",this.productDemosForm.value);
+    console.log("saveProductDemo() function check for update...",this.update);
+    if (this.update) {
+      this.toastrService.success('Product Demos updated succcessfully.', 'Thank You :)');
+      this.productDemosForm.value.demoid = this.demo;
+      //update code
+      this.trailstudio
         .updateProductDemo(this.productDemosForm.value)
         .subscribe((data) => {
           console.log("Saved Successfully...", data);
         });
-     } else {
-       this.toastrService.success('Product Demos submitted succcessfully.', 'Thank You :)');
-       this.trailstudio
-         .insertProductDemos(this.productDemosForm.value)
-         .subscribe((data) => {
-           console.log("Saved Successfully...", data);
-         });
-       this.initilizeProductDemos();
-     }
+    } else {
+      this.toastrService.success('Product Demos submitted succcessfully.', 'Thank You :)');
+      console.log("saveProductDemo() function in Opportunity Details Demoed product Value:",this.productDemosForm.value.demoedProduct);
+      this.trailstudio
+        .insertProductDemos(this.productDemosForm.value)
+        .subscribe((data) => {
+          console.log("Saved Successfully...", data);
+        });
+      this.initilizeProductDemos();
+    }
   }
 
   /* public file:any;

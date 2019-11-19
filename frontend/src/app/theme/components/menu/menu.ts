@@ -7,47 +7,29 @@ export const menuItems = [
     selected: false,
     expanded: false,
     order: 1
-  },/*,{
-    title: 'Customer Profile',
-    routerLink: 'createcustomer',
-    icon: 'fa-user',
-    selected: false,
-    expanded: false,
-    order: 0
-  },*/
- /* 
- {
-    title: 'Qualified Opportunities',
-    routerLink: 'qualifiedopportunities',
-    icon: 'fa-laptop',
-    selected: false,
-    expanded: false,
-    order: 1
-  },*/
-  {
+  },{
     title: 'Qualified Opportunities',
     routerLink: 'qo-home',
     icon: 'fa-laptop',
     selected: false,
     expanded: false,
-    order: 1
+    order: 2
   },
   {
-    title: 'Product Demostrations',
+    title: 'Product Demonstrations',
     routerLink: 'pd-home',
     icon: 'fa-paperclip',
     selected: false,
     expanded: false,
-    order: 2
-  }, 
-  
+    order: 3
+  },  
   {
     title: 'Trail Request',
-    routerLink: 'solutiontrailrequesttool',
+    routerLink: 'trail-home',//solutiontrailrequesttool
     icon: 'fa-globe',
     selected: false,
     expanded: false,
-    order: 3
+    order: 4
   }/*,
   {
     title: 'Form Elements',
@@ -74,8 +56,48 @@ export const menuItems = [
         routerLink: 'form-elements/wizard'
       }
     ]
-  }/*,
-  
+  }/*,{
+    title: 'Customer Profile',
+    routerLink: 'createcustomer',
+    icon: 'fa-user',
+    selected: false,
+    expanded: false,
+    order: 0
+  },
+ {
+    title: 'Qualified Opportunities',
+    routerLink: 'qualifiedopportunities',
+    icon: 'fa-laptop',
+    selected: false,
+    expanded: false,
+    order: 1
+  },
+  {
+    title: 'Form Elements',
+    routerLink: 'form-elements',
+    icon: 'fa-pencil-square-o',
+    selected: false,
+    expanded: false,
+    order: 400,
+    subMenu: [
+      {
+        title: 'Form Inputs',
+        routerLink: 'form-elements/inputs'
+      },
+      {
+        title: 'Form Layouts',
+        routerLink: 'form-elements/layouts'
+      },
+      {
+        title: 'Form Validations',
+        routerLink: 'form-elements/validations'
+      },
+      {
+        title: 'Form Wizard',
+        routerLink: 'form-elements/wizard'
+      }
+    ]
+  },
   {
     title: 'QO-home',
     routerLink: 'qo-home',
@@ -109,25 +131,6 @@ export const menuItems = [
         routerLink: 'form-elements/wizard'
       }
     ]
-  }/*
-  {
-    title: 'Solution Trail Request Tool',
-    routerLink: 'solution-trail-request-tool/',
-    icon: 'fa-globe',
-    selected: false,
-    expanded: false,
-    order: 400,
-    subMenu: [
-      
-      {
-        title: 'About',
-        routerLink: 'solution-trail-request-tool/about'
-      },
-      {
-        title: 'Soultion Trail Request Tool',
-        routerLink: 'solution-trail-request-tool/solution-trail-tool'
-      }
-    ]
   },
   {
     title: 'Form Elements',
@@ -154,7 +157,7 @@ export const menuItems = [
         routerLink: 'form-elements/wizard'
       }
     ]
-  }/*, 
+  }, 
   {
     title: 'Charts',
     routerLink: 'charts',

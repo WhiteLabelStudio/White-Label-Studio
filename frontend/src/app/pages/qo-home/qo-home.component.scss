@@ -32,3 +32,11 @@
 .card-img-overlay {
     top: 46px;
 }
+
+@media screen and (min-width: 1600px) {.image{
+    zoom:1.25
+}
+.largeFont{
+    font-size: 42px;
+}
+}

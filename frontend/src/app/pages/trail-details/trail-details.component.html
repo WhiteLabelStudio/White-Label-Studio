@@ -1,0 +1,412 @@
+<div class="row bottom-30">
+    <div class="col">
+        <div widget class="card">
+            <div class="card-header">
+                <span>SOLUTION TRAIL DETAILS</span>
+                <div class="widget-controls">
+                    <a href="#" class="transition" routerLink="/pages/trail-home"><i class="fa fa-reply"></i></a>
+                    <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                    <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                    <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                    <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+                </div>
+            </div>
+            <div class="card-body widget-body">
+                <form [formGroup]="detailsForm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="customerId">Customer Name&nbsp;&nbsp;<span
+                                            style="color:red">*</span></label>
+                                    <select class="form-control" formControlName="customerId" id="customerId"
+                                        name="customerId">
+                                        <option *ngFor="let customer of customerInfo" value={{customer.customerid}}>
+                                            {{customer.customername}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <label for="interestedProduct">Demoed Product&nbsp;&nbsp;<span
+                                        style="color:red">*</span></label>
+                                <select class="form-control" name="interestedProduct"
+                                    formControlName="interestedProduct">
+                                    <option>Premium</option>
+                                    <option>Advanced</option>
+                                    <option>Basic</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-1" style="padding-top: 20px;">
+                            <button class="btn btn-main btn-rounded" (click)="getProjectDetails()">
+                                <i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div *ngIf="searchFlag">
+                        <div class="row mbm-20 top-40" *ngIf="qualifiedOpp" style="color:#555555d9">
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 bottom-30">
+                                <div class="card" style="border-radius: 15px;">
+                                    <div class="card-header" style="background:  #f79a17;"> QUALIFIED OPPORTUNITY DETAILS
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Customer
+                                                            Type</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{qualifiedOpp.customertype||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Interested
+                                                            Product</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{qualifiedOpp.interestedproduct||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong
+                                                            class="text-truncate">Probability</strong></div>
+                                                    <div class="col-7"><i>{{qualifiedOpp.probability||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">End
+                                                            Customer</strong></div>
+                                                    <div class="col-7"><i>{{qualifiedOpp.endCustomerName||'--'}}</i></div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="row">
+                                                    <div class="col-3"><strong class="text-truncate">Region</strong>
+                                                    </div>
+                                                    <div class="col-9"><i>{{qualifiedOpp.region||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3"><strong class="text-truncate">Country</strong>
+                                                    </div>
+                                                    <div class="col-9"><i>{{qualifiedOpp.country||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3"><strong class="text-truncate">State</strong>
+                                                    </div>
+                                                    <div class="col-9"><i>{{qualifiedOpp.state||'--'}}</i></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-4">
+
+                                                <div class="row">
+                                                    <div class="col-3"><strong class="text-truncate">Status</strong>
+                                                    </div>
+                                                    <div class="col-9"><i>{{qualifiedOpp.status}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3"><strong class="text-truncate">Year</strong></div>
+                                                    <div class="col-9"><i>{{qualifiedOpp.year}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3"><strong class="text-truncate">Quater</strong>
+                                                    </div>
+                                                    <div class="col-9"><i>{{qualifiedOpp.region}}</i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                                <div class="col-12">
+                                            <h3 class="headingClass" style="text-align:center;">CUSTOMER CONTACT DETAILS</h3>
+                                            </div>
+                                        </div><br>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 bottom-30"
+                                                *ngFor="let contact of contacts">
+                                                <div class="card card-primary text-center info-box" style="color: white;
+                                                border-radius: 15px;background: #248dad;">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <!--<h5 class="no-margin"><i
+                                                                        class="fa fa-user"></i>&nbsp;Contact</h5>-->
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <h4>{{contact.name}}</h4>
+                                                                    </div>
+                                                                    <div class="col-12" style="margin-top: -12px;">
+                                                                        <span>{{contact.jobTitle}}</span>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div><br>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <h5 class="no-margin text-truncate"><i
+                                                                        class="fa fa-envelope-o"
+                                                                        style="font-size:15px"></i>&nbsp;Contact Email
+                                                                </h5>
+                                                                <h6>{{contact.contactEmail||'-'}}</h6>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <h5 class="no-margin text-truncate"><i
+                                                                        class="fa fa-phone"
+                                                                        style="font-size:15px"></i>&nbsp;Contact Number
+                                                                </h5>
+                                                                <span>{{contact.contactPhone||'-'}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-xl-6 col-lg-6 col-md-6 bottom-30">
+                                                    <div class="card card-primary text-center info-box" style="color: white;
+                                                    border-radius: 15px;background: #248dad;">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                             <div class="col-12">
+                                                                    <h5 class="no-margin"><i class="fa fa-user"></i>&nbsp;Contact</h5>
+                                                                    <h4>Purna Sahithi, Adduri</h4>
+                                                                </div>
+                                                            </div><br>
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <h5 class="no-margin text-truncate"><i class="fa fa-envelope-o" style="font-size:15px"></i>&nbsp;Contact Email</h5>
+                                                                    <h6>purna.adduri@hawk.iit.edu</h6>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <h5 class="no-margin text-truncate"><i class="fa fa-phone" style="font-size:15px"></i>&nbsp;Contact Number</h5>
+                                                                    <span>3124043051</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row mbm-20 top-40" *ngIf="demoDt">
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 bottom-30">
+                                <div class="card" style="border-radius: 15px;">
+                                    <div class="card-header" style="background: #f79a17;">PRODUCT DEMONSTRATION DETAILS
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">SCRM Number
+                                                        </strong></div>
+                                                    <div class="col-7"><i>{{demoDt.SCRM_number||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Total Expected PO
+                                                            Value</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.expected_PO_value||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Number of
+                                                            Sites</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.no_of_sites||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Type of CPE
+                                                            required</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.CPE_type||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Number of CPE for
+                                                            each
+                                                            type</strong></div>
+                                                    <div class="col-7"><i>{{demoDt.CPE_number||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Expected Price for
+                                                            CPE
+                                                            Type</strong></div>
+                                                    <div class="col-7"><i>{{demoDt.expected_CPE_price||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Projected Yearly
+                                                            CPE
+                                                            Growth</strong></div>
+                                                    <div class="col-7"><i>{{demoDt.CPE_yearly_growth||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Expected POC
+                                                            Date</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.expected_POC_date||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Expected Deployment
+                                                            Date</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.expected_deployment_date||'--'}}</i>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Existing VAN
+                                                            Service for
+                                                            <br>this
+                                                            customer?</strong></div>
+                                                    <div class="col-7"><i>{{demoDt.VAN_service_flag||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Intergration to
+                                                            existing
+                                                            CE?</strong></div>
+                                                    <div class="col-7"><i>{{demoDt.CE_integration_flag||'--'}}</i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Does the customer
+                                                            have
+                                                            DC?</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.DC_flag||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Existing
+                                                            underlaylink
+                                                            provider?</strong></div>
+                                                    <div class="col-7"><i>{{demoDt.CE_integration_flag||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Interested in
+                                                            Product?</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.interested_product||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Demoed
+                                                            Product</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.demoed_product||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Demo Date</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.demo_date||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Demo WebEx
+                                                            URL</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.webex_url||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Sales Engineer
+                                                            Resource</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.demo_sales_engineer||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">IPCC
+                                                            Resource</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.ipcc_resource||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Account
+                                                            Manager</strong>
+                                                    </div>
+                                                    <div class="col-7"><i>{{demoDt.account_manager||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong
+                                                            class="text-truncate">Competitors</strong></div>
+                                                    <div class="col-7"><i>{{demoDt.competitors||'--'}}</i></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-5"><strong class="text-truncate">Summary of Customer
+                                                            Feedback</strong></div>
+                                                    <div class="col-7"><i>{{demoDt.feedback||'--'}}</i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mbm-20 top-40" *ngIf="!qualifiedOpp && !demoDt">
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 bottom-30">
+                                <div class="card" style="border-radius: 15px;">
+                                    <div class="card-header" style="background: #f79a17;"> Qualified Opportunity Details
+                                    </div>
+                                    <div class="card-body" style="text-align: center;color: gray;">
+                                        <i class="fa fa-info-circle" style="font-size: 101px;"></i>
+                                        <h1>Not a qualified opportunity</h1>
+                                        <i style="color: #1e88e5;"><span style="color:red">*</span>&nbsp;Please create a
+                                            qualified opportunity to request a new trail.</i><br><a
+                                            href="/pages/qualifiedopportunities">Click here >></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mbm-20 top-40" *ngIf="qualifiedOpp && !demoDt">
+
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 bottom-30">
+                                <div class="card" style="border-radius: 15px;">
+                                    <div class="card-header" style="background: #f79a17;"> Product Demostration Details
+                                    </div>
+                                    <div class="card-body" style="text-align: center;color: gray;    font-size: 101px;">
+                                        <i class="fa fa-info-circle"></i>
+                                        <h1>No Product Demoed</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+                        <div *ngIf="qualifiedOpp">
+                            <div class="row  mbm-20 top-40" style="margin-left: 3px;">
+                                <div class="col-12">
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input type="checkbox" class="custom-control-input checkbox-success"
+                                            name="verifyFlag" formControlName="verifyFlag" id="verifyFlag">
+                                        <label class="custom-control-label" for="verifyFlag">Check here to verify the
+                                            all
+                                            the displayed details of Qualified Opportunity and Product Demostations for
+                                            the
+                                            selected customer before requesting a new trail.</label>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <br>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-main pull-left" routerLink="/pages/trail-home">
+                                        <i class="fa fa-chevron-left arrow"></i>&nbsp;Back to Search</button>
+                                    <button class="btn btn-main pull-right" routerLink="/pages/solutiontrailrequesttool"
+                                        *ngIf="detailsForm.value.verifyFlag">
+                                        Request New Trail &nbsp;<i class="fa fa-chevron-right arrow"></i></button>
+
+                                    <button class="btn btn-main transition pull-right" disabled="disabled" type="button"
+                                        *ngIf="!detailsForm.value.verifyFlag" data-toggle="tooltip"
+                                        data-animation="false" data-placement="top"
+                                        title="Please check the check box to verify the details and request a new trail">
+                                        Request New Trail &nbsp;<i class="fa fa-chevron-right arrow"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

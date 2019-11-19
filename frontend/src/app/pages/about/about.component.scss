@@ -20,3 +20,31 @@
         transition: all .3s ease-in-out;
     }
     
+
+
+    .fill {
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        background-image: url('/assets/TrialStudioimage.jpg');
+    }
+
+    @media (min-width: 2000px) {
+        .image{
+            zoom:1.25
+        }
+    }
+
+    @media screen and (min-width: 1400px) { }
+
+    @media screen and (min-width: 1600px) {
+        .image{
+            zoom:1.25
+        }
+        .largeFont{
+            font-size: 42px;
+        }
+    }
+
+
+@media screen and (min-width: 1900px) {}

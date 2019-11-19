@@ -1,8 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { WizardValidationService } from './wizard-validation.service';
+import { Router } from '@angular/router'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import * as $ from "jquery";
+
 
 @Component({
   selector: 'solution-trail-tool',
@@ -23,7 +24,7 @@ export class SolutionTrailTool {
     list : any;
     
 
-    constructor(private formBuilder: FormBuilder) { 
+    constructor(private formBuilder: FormBuilder,private router: Router) { 
         
         
         this.list = 0;
@@ -138,8 +139,11 @@ export class SolutionTrailTool {
     }
 
     public prev(){
-        if(this.steps[0].active)
+        if(this.steps[0].active){
+        //console.log("This the first step....");
+        this.router.navigate(['/pages/trail-details']);
             return false;
+        }
         this.steps.some(function (step, index, steps) {
             if(index != 0){
                 if(step.active){
@@ -147,7 +151,7 @@ export class SolutionTrailTool {
                     steps[index-1].active=true;
                     return true;
                 }
-            }             
+            }            
         });
     }
 
@@ -155,13 +159,5 @@ export class SolutionTrailTool {
         this.steps.forEach(step => step.valid = true);
     }
 
-
-
-  
-
-    imageClicked(){
-
-    }
-   
 }
 

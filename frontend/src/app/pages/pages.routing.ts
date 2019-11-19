@@ -11,6 +11,8 @@ import { AboutComponent } from './about/about.component';
 import { SolutionTrailTool } from './solution-trail-tool/solution-trail-tool.component';
 import { QOComponent } from './qo-home/qo-home.component';
 import { PDComponent } from './pd-home/pd-home.component';
+import { TrailComponent } from './Trail-home/Trail-home.component';
+import { TrailDetailsComponent } from './trail-details/trail-details.component';
 
 export const routes: Routes = [
     {
@@ -31,7 +33,7 @@ export const routes: Routes = [
             { path: 'editors', loadChildren: './editors/editors.module#EditorsModule', data: { breadcrumb: 'Editors' } },
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule', data: { breadcrumb: 'Profile' }  }, 
             
-            { path: 'solution-trail-request-tool', loadChildren: './solution-trail-request-tool/solution-trail-request-tool.module#SolutionTrailRequestToolModule', data: { breadcrumb: 'Solution Trail request tool' } },  
+           // { path: 'solution-trail-request-tool', loadChildren: './solution-trail-request-tool/solution-trail-request-tool.module#SolutionTrailRequestToolModule', data: { breadcrumb: 'Solution Trail request tool' } },  
          //   { path: 'solution-trail-tool', loadChildren: './solution-trail-tool/solution-trail-tool.module#SolutionTrailTool', data: { breadcrumb: 'solution-trail-tool' }  },  
             { path: 'search', component: SearchComponent, data: { breadcrumb: 'Search' } },
             { path: 'blank', component: BlankComponent, data: { breadcrumb: 'Blank page' } },
@@ -40,6 +42,8 @@ export const routes: Routes = [
             { path: 'productdemo', component: ProductDemoComponent},
             { path: 'about', component: AboutComponent},
             { path: 'qo-home', component: QOComponent},
+            { path: 'trail-home', component: TrailComponent},
+            { path: 'trail-details', component: TrailDetailsComponent},
             { path: 'pd-home', component: PDComponent}
             
         ]

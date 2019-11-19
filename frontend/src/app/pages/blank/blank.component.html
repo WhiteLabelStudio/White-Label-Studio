@@ -1,0 +1,396 @@
+<div class="row bottom-30">
+        <div class="col">
+        <div widget class="card">
+            <div class="card-header">
+                <span>TRAIL REQUEST</span>
+                <div class="widget-controls">
+                    <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+                    <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+                    <a data-widgster="fullscreen" href="#" class="transition"><i class="fa fa-expand"></i></a>
+                    <a data-widgster="restore" href="#" class="transition"><i class="fa fa-compress"></i></a>
+                    <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="card-body widget-body">
+                <div class="row">
+                    <div *ngFor="let step of steps; let last = last" class="col-md-3 col-sm-6 col-12 step"
+                        [class.active]="step.active" [class.valid]="step.valid" [ngClass]="{'last' : last }">
+                        <div class="step-icon">
+                            <i class="fa {{ step.icon }}" aria-hidden="true" style="color:white;"></i>
+                        </div>
+                        <span class="step-name" [class.active]="step.active"
+                            [class.valid]="step.valid">{{step.name}}</span>
+                    </div>
+                </div>
+
+                <div *ngFor="let step of steps" [hidden]="!step.active" class="col form-wizard">
+                    <div class="row form-title">
+                        <h4><i class="fa {{ step.icon }}"></i> {{step.name}}</h4>
+                    </div>
+
+                    <form *ngIf="step.name=='Contact Details'" [formGroup]="accountForm">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="customerName">Customer Name</label>
+                                    <input type="text" class="form-control" id="inputFirstName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="customerName">Sales Engineer Resource</label>
+                                    <input type="text" class="form-control" id="inputFirstName">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="endCustomer">IPCC Resource</label>
+                                    <input type="text" class="form-control" id="inputLastName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="customerName">Account Manager</label>
+                                    <input type="text" class="form-control" id="inputFirstName">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="endCustomer">NPI Resource</label>
+                                    <input type="text" class="form-control" id="inputLastName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="customerName">Nokia Trial Requestor Name</label>
+                                    <input type="text" class="form-control" id="inputFirstName">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="endCustomer">Nokia Trial Requestor Job Title</label>
+                                    <input type="text" class="form-control" id="inputLastName">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form *ngIf="step.name=='Packages'" [formGroup]="personalForm" style="color: #555;">
+                        <div class="row">
+                            <div class="col-lg-4 js--wp-4">
+                                <div class="plan-box">
+                                    <div>
+                                        <h3 class="pakagesHeader">Basic</h3> <img src="../../../assets/basic.png"
+                                            alt="POC Tool" style="
+                                                margin-left: 25px;margin-top: 0px;height: 116px;">
+                                    </div>
+                                    <div>
+                                        <ul>
+
+                                            <li><i class="fa fa-thumbs-up"></i>100% virtual infrastructure</li>
+                                            <li><i class="fa fa-thumbs-up"></i>VSG-Vs will be used</li>
+                                            <li><i class="fa fa-thumbs-down"></i>Faster deployment</li>
+                                            <li><i class="fa fa-thumbs-down"></i>Lower wait time for resource</li>
+                                            <li><i class="fa fa-thumbs-down"></i>Only internet underlay used</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary btn-rounded" (click)="next()">Sign up
+                                            now</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="plan-box">
+                                    <div>
+                                        <h3 class="pakagesHeader">Premium</h3>
+                                        <img src="../../../assets/premium.png" alt="POC Tool" style="
+                                                margin-left: 25px;margin-top: 0px;height: 116px;">
+                                    </div>
+                                    <div>
+                                        <ul>
+                                            <li><i class="fa fa-thumbs-up"></i>100% virtual infrastructure</li>
+                                            <li><i class="fa fa-thumbs-up"></i>VSG-Vs will be used</li>
+                                            <li><i class="fa fa-thumbs-up"></i>Faster deployment</li>
+                                            <li><i class="fa fa-thumbs-down"></i>Lower wait time for resource</li>
+                                            <li><i class="fa fa-thumbs-down"></i>Only internet underlay used</li>
+
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary btn-rounded" (click)="next()">Sign up
+                                            now</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="plan-box">
+                                    <div>
+                                        <h3 class="pakagesHeader">Advanced</h3>
+                                        <img src="../../../assets/advanced.png" alt="POC Tool" style="
+                                                margin-left: 25px;margin-top: 0px;height: 116px;">
+                                    </div>
+                                    <div>
+                                        <ul>
+
+                                            <li><i class="fa fa-thumbs-up"></i>100% virtual infrastructure</li>
+                                            <li><i class="fa fa-thumbs-up"></i>VSG-Vs will be used</li>
+                                            <li><i class="fa fa-thumbs-up"></i>Faster deployment</li>
+                                            <li><i class="fa fa-thumbs-up"></i>Lower wait time for resource</li>
+                                            <li><i class="fa fa-thumbs-up"></i>Only internet underlay used</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary btn-rounded" (click)="next()">Sign up
+                                            now</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    <form *ngIf="step.name=='Solution Request Details'" [formGroup]="personalForm">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="customerName">Product Requested for Trail</label>
+                                    <select class="form-control" id="probability">
+                                        <option>Premium</option>
+                                        <option>Advanced</option>
+                                        <option>Basic</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="endCustomer">Type of Activity</label>
+                                    <select class="form-control" id="probability">
+                                        <option>Pre Sale</option>
+                                        <option>Try and Buy</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="customerName">Type of Solution</label>
+                                    <select class="form-control" id="probability">
+                                        <option>Cloud</option>
+                                        <option>On-site</option>
+                                        <option>Hybrid</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="endCustomer">Lab</label>
+                                    <select class="form-control" id="probability">
+                                        <option>Nokia</option>
+                                        <option>Customer</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="endCustomer">Requested trail Date</label>
+                                    <input type="date" class="form-control" id="inputLastName">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="endCustomer">Actual Exicution Date</label>
+                                    <input type="date" class="form-control" id="inputLastName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col bottom-15">
+                                    <h6>Travel Required?</h6>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="radio1" type="radio" name="radioInline" class="custom-control-input"
+                                            checked>
+                                        <label class="custom-control-label" for="radio1">Yes</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="radio2" type="radio" name="radioInline" class="custom-control-input">
+                                        <label class="custom-control-label" for="radio2">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form *ngIf="step.name=='Features'" [formGroup]="paymentForm">
+                        <section>
+                            <div class="quizimgblock">
+                                <div class="container">
+                                    <div class="row bottom-30">
+                                        <div class="col-sm-3">
+                                            <a class="quiz-answer multiple-answers" data-question="1" data-answer="1"
+                                                [ngClass]="{'active': isActive1}" (click)="isActive1 = !isActive1">
+                                                <span class="check">
+                                                    <img src="http://icons.iconarchive.com/icons/cheezen/web-2/64/check-icon.png"
+                                                        alt="check" style="height: 43px;
+                                                margin-bottom: 120px;margin-left: -123px;">
+                                                </span>
+                                                <img src="../../../assets/Bootstrap.png" alt="" width="193"
+                                                    height="130">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a class="quiz-answer multiple-answers" data-question="1" data-answer="1"
+                                                [ngClass]="{'active': isActive2}" (click)="isActive2 = !isActive2">
+                                                <span class="check">
+                                                    <img src="http://icons.iconarchive.com/icons/cheezen/web-2/64/check-icon.png"
+                                                        alt="check" style="height: 43px;
+                                                margin-bottom: 120px;margin-left: -123px;">
+                                                </span>
+                                                <img src="../../../assets/QoS.png" alt="" width="193" height="130">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a class="quiz-answer multiple-answers" data-question="1" data-answer="1"
+                                                [ngClass]="{'active': isActive3}" (click)="isActive3 = !isActive3">
+                                                <span class="check">
+                                                    <img src="http://icons.iconarchive.com/icons/cheezen/web-2/64/check-icon.png"
+                                                        alt="check" style="height: 43px;
+                                                margin-bottom: 120px;margin-left: -123px;">
+                                                </span>
+                                                <img src="../../../assets/PortAddressTranslation.png" alt="" width="193"
+                                                    height="130">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a class="quiz-answer multiple-answers" data-question="1" data-answer="1"
+                                                [ngClass]="{'active': isActive4}" (click)="isActive4 = !isActive4">
+                                                <span class="check">
+                                                    <img src="http://icons.iconarchive.com/icons/cheezen/web-2/64/check-icon.png"
+                                                        alt="check" style="height: 43px;
+                                                margin-bottom: 120px;margin-left: -123px;">
+                                                </span>
+                                                <img src="../../../assets/PATtoOverlay.png" alt="" width="193"
+                                                    height="130">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <a class="quiz-answer multiple-answers" data-question="1" data-answer="1"
+                                                [ngClass]="{'active': isActive5}" (click)="isActive5 = !isActive5">
+                                                <span class="check">
+                                                    <img src="http://icons.iconarchive.com/icons/cheezen/web-2/64/check-icon.png"
+                                                        alt="check" style="height: 43px;
+                                                  margin-bottom: 120px;margin-left: -123px;">
+                                                </span>
+                                                <img src="../../../assets/MultiHighsupervisorSupport.png" alt=""
+                                                    width="193" height="130">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a class="quiz-answer multiple-answers" data-question="1" data-answer="1"
+                                                [ngClass]="{'active': isActive6}" (click)="isActive6 = !isActive6">
+                                                <span class="check">
+                                                    <img src="http://icons.iconarchive.com/icons/cheezen/web-2/64/check-icon.png"
+                                                        alt="check" style="height: 43px;
+                                                  margin-bottom: 120px;margin-left: -123px;">
+                                                </span>
+                                                <img src="../../../assets/VTEPHWIntegration.png" alt="" width="193"
+                                                    height="130">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a class="quiz-answer multiple-answers" data-question="1" data-answer="1"
+                                                [ngClass]="{'active': isActive7}" (click)="isActive7 = !isActive7">
+                                                <span class="check">
+                                                    <img src="http://icons.iconarchive.com/icons/cheezen/web-2/64/check-icon.png"
+                                                        alt="check" style="height: 43px;
+                                                  margin-bottom: 120px;margin-left: -123px;">
+                                                </span>
+                                                <img src="../../../assets/BGP.png" alt="" width="193" height="130">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <a class="quiz-answer multiple-answers" data-question="1" data-answer="1"
+                                                [ngClass]="{'active': isActive8}" (click)="isActive8 = !isActive8">
+                                                <span class="check">
+                                                    <img src="http://icons.iconarchive.com/icons/cheezen/web-2/64/check-icon.png"
+                                                        alt="check" style="height: 43px;
+                                                  margin-bottom: 120px;margin-left: -123px;">
+                                                </span>
+                                                <img src="../../../assets/DualUplink.png" alt="" width="193"
+                                                    height="130">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+
+
+                    <form *ngIf="step.name=='Trail Details'" [formGroup]="paymentForm">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="customerName">Trail Demo WebEx URL</label>
+                                    <input type="text" class="form-control" id="inputFirstName">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="customerName">Status</label>
+                                    <select class="form-control" id="probability">
+                                        <option>Active</option>
+                                        <option>Completed</option>
+                                        <option>On-hold</option>
+                                        <option>Closed-out</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Summary" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <form action="#" class="dropzone ng-untouched ng-pristine ng-valid" dropzone
+                                    id="my-awesome-dropzone" novalidate>
+                                    <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+                                </form>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+
+
+                    <div class="row" style="padding-bottom: 30px;">
+                        <div class="col-12">
+                            <button class="btn btn-primary" (click)="prev()"><i class="fa fa-chevron-left arrow"></i><i
+                                    class="fa fa-chevron-left arrow"></i></button>
+                            <button class="btn btn-primary pull-right" *ngIf="!steps[steps.length-1].active"
+                                (click)="next()"><i class="fa fa-chevron-right arrow"></i><i
+                                    class="fa fa-chevron-right arrow"></i></button>
+                            <button *ngIf="steps[steps.length-1].active" class="btn btn-primary pull-right"
+                                (click)="confirm()">Confirm &nbsp;<i class="fa fa-check arrow"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

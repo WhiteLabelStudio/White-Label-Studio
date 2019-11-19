@@ -26,6 +26,8 @@ import { FileUploaderComponent } from './product-demo/file-uploader/file-uploade
 import { SolutionTrailTool } from './solution-trail-tool/solution-trail-tool.component';
 import { QOComponent } from './qo-home/qo-home.component';
 import { PDComponent } from './pd-home/pd-home.component';
+import { TrailComponent } from './Trail-home/Trail-home.component';
+import { TrailDetailsComponent } from './trail-details/trail-details.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -62,6 +64,8 @@ import { SortByPipe} from './qo-home/sortBy.pipe';
     SolutionTrailTool,
     QOComponent,
     PDComponent,
+    TrailComponent,
+    TrailDetailsComponent,
     FilterPipe,
     SortByPipe
   ],

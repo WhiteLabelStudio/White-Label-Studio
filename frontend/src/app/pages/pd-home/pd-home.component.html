@@ -3,7 +3,7 @@ margin: -39px;
 padding: 20px;">
 <div class="row  bottom-30" >
         <div class="col-lg-12 col-sm-12" >
-            <button class="btn btn-main btn-rounded pull-right" routerLink="/pages/productdemo"><i class="fa fa-plus" style="margin-right: 10px;"></i>Add Product Demo</button>
+            <button class="btn btn-main btn-rounded pull-right" routerLink="/pages/productdemo"><i class="fa fa-plus" style="margin-right: 10px;"></i>Request Product Demo</button>
         </div>
     </div>
 
@@ -49,16 +49,16 @@ padding: 20px;">
     <div class="card card-weather" style="border-radius: 15px;">
             <img class="card-img-top" src="../assets/img/app/bg-img.png" alt="Card image cap">
             <div class="card-img-overlay" style="color:white;">               
-                    <h3 class="no-margin">{{pd.customername}}</h3>
+                    <h3 class="no-margin largeFont">{{pd.customername}}</h3>
                     <!--<p class="card-text">TODAY {{date | date: 'dd.MM.yyyy'}}</p>-->
-                    <p class="card-text  card-font">25 October, 2019 CA, United States </p>
+                    <p class="card-text  card-font">25 October, 2019 CA, {{pd.country}} </p>
               </div>
         <div class="card-body p-0">
             <div class="d-flex weakly-weather">
                 <div class="weakly-weather-item">
                     <p class="mb-0"> Product </p>
                     <i class="mdi mdi-weather-cloudy"></i>
-                    <p class="mb-0"> Premium </p>
+                    <p class="mb-0"> {{pd.demoed_product}} </p>
                 </div>
                 <div class="weakly-weather-item">
                     <p class="mb-1">Type</p>
@@ -67,8 +67,8 @@ padding: 20px;">
                 </div>
                 <div class="weakly-weather-item">
                     <i class="mdi mdi-weather-partlycloudy"></i>
-                    <p class="mb-0"> 2019</p>
-                    <p class="mb-0"> Q1, Q2</p>
+                    <p class="mb-0"> {{pd.year}}</p>
+                    <p class="mb-0" style="font-size: 13px;"> {{pd.quater}}</p>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@ margin: -39px;
 padding: 20px;">
 <div class="row  bottom-30" >
         <div class="col-lg-12 col-sm-12" >
-            <button class="btn btn-main btn-rounded pull-right" routerLink="/pages/qualifiedopportunities"><i class="fa fa-plus" style="margin-right: 10px;"></i>Add Opportunity</button>
+            <button class="btn btn-main btn-rounded pull-right" routerLink="/pages/trail-details"><i class="fa fa-plus" style="margin-right: 10px;"></i>Request New Trial</button>
         </div>
     </div>
     <form [formGroup]="searchForm" >
@@ -42,21 +42,20 @@ padding: 20px;">
 </div>
 </form>
 </div>
-<div class="row top-40" style="padding-top:65px">
-<div class="col-lg-4 grid-margin stretch-card bottom-30"   *ngFor="let qo of qo | filter : searchForm.value.searchTxt| sortBy:searchForm.value.orderBy:searchForm.value.customerAttr" (click)="cardClicked(qo)"><!-- (click)="cardClicked(qo)"-->
+<!--<div class="row top-40" style="padding-top:65px">
+<div class="col-lg-4 grid-margin stretch-card bottom-30"   *ngFor="let qo of qo | filter : searchForm.value.searchTxt| sortBy:searchForm.value.orderBy:searchForm.value.customerAttr" (click)="cardClicked(qo)">
     <div class="card card-weather" style="border-radius: 15px;">
             <img class="card-img-top" src="../assets/img/app/bg-img.png" alt="Card image cap">
             <div class="card-img-overlay" style="color:white;">               
                     <h3 class="no-margin largeFont">{{qo.customername}}</h3>
-                    <!--<p class="card-text">TODAY {{date | date: 'dd.MM.yyyy'}}</p>-->
-                    <p class="card-text  card-font">{{qo.state}}, {{qo.country}}</p>
+                    <p class="card-text  card-font">25 October, 2019 CA, United States </p>
               </div>
         <div class="card-body p-0">
             <div class="d-flex weakly-weather">
                 <div class="weakly-weather-item">
                     <p class="mb-0"> Product </p>
                     <i class="mdi mdi-weather-cloudy"></i>
-                    <p class="mb-0"> {{qo.interestedproduct}} </p>
+                    <p class="mb-0"> VNS </p>
                 </div>
                 <div class="weakly-weather-item">
                     <p class="mb-1">Type</p>
@@ -65,11 +64,11 @@ padding: 20px;">
                 </div>
                 <div class="weakly-weather-item">
                     <i class="mdi mdi-weather-partlycloudy"></i>
-                    <p class="mb-0"> {{qo.year}}</p>
-                    <p class="mb-0" style="font-size: 13px;"> {{qo.quater}}</p>
+                    <p class="mb-0"> 2019</p>
+                    <p class="mb-0"> Q1, Q2</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+</div>-->

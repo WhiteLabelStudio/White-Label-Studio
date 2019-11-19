@@ -26,10 +26,10 @@
                         <h4><i class="fa {{ step.icon }}"></i> {{step.name}}</h4>
                     </div>
                         
-                    <form *ngIf="step.name=='Contact Details'" [formGroup]="accountForm" class="row">
+                    <form *ngIf="step.name=='Account Information'" [formGroup]="accountForm" class="row">
                         
                         <div class="form-group col-md-7 mb-3" [ngClass]="{'has-danger' : step.hasError && accountForm.get('username').hasError('required'), 'has-success' : !accountForm.get('username').hasError('required') }">
-                            <label class="form-control-label">Username</label>{{accountForm.get('username').hasError('required')}}
+                            <label class="form-control-label">Username</label>
                             <div class="input-group"> 
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-user-o"></i></span>
@@ -81,7 +81,7 @@
                         </div>
                     </form>
 
-                    <form *ngIf="step.name=='Solution Request Details'" [formGroup]="personalForm" class="row">
+                    <form *ngIf="step.name=='Personal Information'" [formGroup]="personalForm" class="row">
                         <div class="form-group col-md-2">
                             <label class="form-control-label">Salutation</label>
                             <select formControlName="salutation" class="form-control">
@@ -93,7 +93,7 @@
                         <div class="form-group col-md-5" [ngClass]="{'has-danger' : step.hasError && personalForm.get('firstname').hasError('required'), 'has-success' : !personalForm.get('firstname').hasError('required') }">
                             <label class="form-control-label">First Name</label>
                             <input formControlName="firstname" class="form-control" [ngClass]="{'form-control-danger' :  personalForm.get('firstname').hasError('required'), 'form-control-success' :  !personalForm.get('firstname').hasError('required') }" type="text"> 
-                            <span class="help-block text-danger" *ngIf="step.hasError && personalForm.get('firstname').hasError('required')">First Name is required</span> ----  {{personalForm.get('firstname').hasError('required')}}                          
+                            <span class="help-block text-danger" *ngIf="step.hasError && personalForm.get('firstname').hasError('required')">First Name is required</span>                             
                         </div>
 
                         <div class="form-group col-md-5" [ngClass]="{'has-danger' : step.hasError && personalForm.get('lastname').hasError('required'), 'has-success' : !personalForm.get('lastname').hasError('required') }">
@@ -169,7 +169,7 @@
                         </div>                     
                     </form>
 
-                    <form *ngIf="step.name=='Selected Features'" [formGroup]="paymentForm" class="row">
+                    <form *ngIf="step.name=='Payment Information'" [formGroup]="paymentForm" class="row">
                         <div class="form-group col-md-7" [ngClass]="{'has-danger' : step.hasError && paymentForm.get('cardtype').hasError('required'), 'has-success' : !paymentForm.get('cardtype').hasError('required') }">
                             <label class="form-control-label">Card Type</label>
                             <select formControlName="cardtype" class="form-control" [ngClass]="{'form-control-danger' : step.hasError && paymentForm.get('cardtype').hasError('required'), 'form-control-success' : !paymentForm.get('cardtype').hasError('required') }">
@@ -233,7 +233,7 @@
                         </div>
                     </form>
                    
-                    <div *ngIf="step.name=='Trail Details'" class="row">
+                    <div *ngIf="step.name=='Confirm Your Details'" class="row">
                         <div class="col-2"><strong class="text-truncate">Username</strong></div>
                         <div class="col-10"><i>{{details.username}}</i></div>
                         <div class="col-2"><strong class="text-truncate">Full Name</strong></div>

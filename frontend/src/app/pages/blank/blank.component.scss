@@ -1,0 +1,300 @@
+@import "../../theme/styles/variables";
+
+.step{
+    text-align: center;
+    &:before, &:after{
+        content: '';
+        position: absolute;        
+        background-color: $gray-light;
+        top: 0;
+        margin-top: 23px;        
+        width: 50%;
+        height: 5px;
+        border-top: 1px solid $gray;
+        border-bottom: 1px solid $gray;        
+    }
+    &:before{
+        left: 0;
+    }
+    &:after{
+        right: 0;
+    }
+    &:first-child:before {
+        display: none; 
+    }
+    &.last:after{
+        display: none; 
+    }
+    .step-icon{
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        background: #555;
+        border: 1px solid $gray;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 0 auto;
+        i{
+            margin: 0 auto;
+            font-size: 20px;
+            color: $gray;
+        }
+    }
+    &.active{
+        &:before, &:after{
+            background: $danger-color;
+            border:none;
+        }
+        .step-icon{
+            background: $danger-color;
+            border:none;
+            i{
+                color: $default-color; 
+            }
+        }
+    }
+    &.valid{
+        &:before, &:after{
+            background: $success-color;
+            border:none;
+        }
+        .step-icon{
+            background: $success-color;
+            border:none;
+            i{
+                color: $default-color; 
+            }
+        }
+    }
+    .step-name{
+        display: block;
+        margin-top: 14px;
+        color: $gray;
+        &.active{
+            color: $danger-color;
+        }
+        &.valid{
+            color: $success-color;
+        }
+    }
+}
+
+.form-wizard{  
+    margin-top:25px;
+    margin-bottom: 20px;
+    background: $body-bg-color;
+    padding-top: 15px; 
+    min-height: 400px;   
+    .form-title{
+        margin-bottom: 15px;
+        color: $gray;
+        border-bottom: 1px solid $gray-light;
+        padding: 0 15px;
+    }
+    .form-control-label{
+        color: $text-color !important;
+    }
+    .help-block{
+        position: absolute;
+        font-size: 11px;
+    }
+}
+
+.arrow{
+    font-size: 12px;
+}
+
+
+@media (max-width: 767px) { 
+    .step{
+        margin-bottom: 10px;
+        text-align: left;
+        .step-icon{
+            float: left;
+            margin-right: 15px;
+        }
+        &:before, &:after{
+            content: none;
+        }
+    }  
+}
+
+.btn-main {
+    background: #124191;
+}
+
+.btn-main:hover{
+    background: rgba(18, 65, 145, 0.8);
+}
+
+/*----------------------------------------------------------*/
+/*------------------ CSS FOR IMAGE SELECTION ----------------------------*/
+/*----------------------------------------------------------*/
+.quizimgblock {
+    margin-bottom: 2em;
+  }
+  
+  .wrapper {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+  }
+  
+  .quizimgblock img.quizitems {
+    width: 100%;
+    height: auto;
+  }
+  .quizimgblock a:hover img{
+    opacity: 0.5;
+  }
+  .quizimgblock .check {
+    position: absolute;
+    top:47%;
+    left:47%;
+    transform:translate(-45%, -45%);
+  }
+  .quizimgblock a .check {
+    opacity: 0;
+    z-index: 9;
+    transition:opacity .5s ease
+  }
+  .quizimgblock .check img {
+    border: 0px !important;
+  }
+  .quizimgblock a:hover .check {
+    opacity: 1;
+  }
+  .quiz-answer.active .check {
+    opacity: 1;
+  }
+  .quizimgblock a:hover .check img {
+    opacity: 1 !important;
+  }
+  
+  
+  
+  .quizbutton {
+    text-align: center;
+    margin: 1.25em auto 3em;
+  }
+  .quizbutton .quizbtn {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0.65em 1.75em;
+    background-color: #f6700e;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.6);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.6);
+    border: solid 1px #f06c0b;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+  }
+  .quizbutton .quizbtn:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #f77f27;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f77f27), to(#f6700e));
+    background-image: -webkit-linear-gradient(top, #f77f27, #f6700e);
+    background-image: -moz-linear-gradient(top, #f77f27, #f6700e);
+    background-image: -o-linear-gradient(top, #f77f27, #f6700e);
+    background-image: linear-gradient(to bottom, #f77f27, #f6700e);
+  }
+  .quizbutton .quizbtn:active {
+    color: white;
+    text-decoration: none;
+    background-color: #f6700e;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f6700e), to(#f77f27));
+    background-image: -webkit-linear-gradient(top, #f6700e, #f77f27);
+    background-image: -moz-linear-gradient(top, #f6700e, #f77f27);
+    background-image: -o-linear-gradient(top, #f6700e, #f77f27);
+    background-image: linear-gradient(to bottom, #f6700e, #f77f27);
+    -webkit-box-shadow: 0 0 0 1px #f58029, inset 0 1px 1px #b14f07;
+    box-shadow: 0 0 0 1px #f58029, inset 0 1px 1px #b14f07;
+  }
+
+  
+
+/*--------------------------------------------*/
+/*-------- SIGNUP AND PLANS ----------*/
+/*--------------------------------------------*/
+
+.section-plans{
+    background-color: #f4f4f4;
+}
+
+.plan-box{
+    background-color: #ffff;
+    border-radius: 5px;
+    width:90%;
+    /*height:40%;*/
+ margin-left: 5%;
+     box-shadow:0 5px 5px #eae6e6;
+}
+
+.plan-box div{
+   padding:15px;
+    border-bottom : 1px solid #d1d1d1;
+}
+
+.plan-price{
+   font-size:250%;
+    font-weight:100;
+    margin-bottom: 10px;
+    color:#e67e22;
+}
+
+.plan-price span{
+    font-size:30%;
+    font-weight:300;
+}
+
+.plan-price-meal{
+    font-size: 80%;
+}
+
+.plan-box ul{
+   list-style: none; 
+}
+
+.plan-box ul li{
+  padding:5px 0; 
+}
+
+.plan-box div:first-child{
+    background-color: #fcfcfc;
+    border-top-left-radius: 5px;
+    border-top-right-radius:5px;
+}
+
+.plan-box div:last-child{
+    text-align: center;
+    border:none;
+}
+
+.fa-thumbs-up{
+    font-size: 25px;
+    color: #3bad3bcc;
+    padding-right: 10px;
+}
+
+.fa-thumbs-down{
+    font-size: 25px;
+    color: #dc3545;
+    padding-right: 10px;
+}
+
+/* --------HEADINGS ---------*/
+
+    
+    .pakagesHeader{
+    font-size: 180%;
+    margin-bottom: 15px;
+    font-weight: 300;
+    text-transform: uppercase;
+    }
