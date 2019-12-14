@@ -84,31 +84,85 @@
                     </div>
 
                     <div class="row">
-
                         <div class="col-sm-12">
 
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label for="CPEType">Type of CPE required</label>
                                 <select class="form-control" formControlName="CPEType">
                                     <option>With LTE/Wifi/VNF</option>
                                     <option>Without LTE/Wifi/VNF</option>
                                 </select>
+                            </div>-->
+                     
+                            <h6>Type of CPE required</h6>
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input checkbox-primary"
+                                        name="WithLTE" formControlName="WithLTE" id="WithLTE">
+                                    <label class="custom-control-label" for="WithLTE">With LTE</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input checkbox-primary"
+                                        name="WithoutLTE" formControlName="WithoutLTE" id="WithoutLTE">
+                                    <label class="custom-control-label" for="WithoutLTE">Without LTE</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input checkbox-primary"
+                                        name="WithWifi" formControlName="WithWifi" id="WithWifi">
+                                    <label class="custom-control-label" for="WithWifi">With Wifi</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input checkbox-primary"
+                                        name="WithoutWifi" formControlName="WithoutWifi" id="WithoutWifi">
+                                    <label class="custom-control-label" for="WithoutWifi">Without Wifi</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input type="checkbox" class="custom-control-input checkbox-primary"
+                                            name="WithVNF" formControlName="WithVNF" id="WithVNF">
+                                        <label class="custom-control-label" for="WithVNF">With VNF</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input checkbox-primary"
+                                                name="WithoutVNF" formControlName="WithoutVNF" id="WithoutVNF">
+                                            <label class="custom-control-label" for="WithoutVNF">Without VNF</label>
+                                        </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="CPENumber">Number of CPE for each type</label>
-                                <input type="text" class="form-control" formControlName="CPENumber">
-                            </div>
+                            <div class="col-sm-12" *ngIf="productDemosForm.value.WithLTE">
+                                    <div class="form-group">
+                                        <label for="WithLTECPENumber">Number of CPE for LTE type</label>
+                                        <input type="text" class="form-control" formControlName="WithLTECPENumber">
+                                    </div>
+                                </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="row">
+                                <div class="col-sm-12" *ngIf="productDemosForm.value.WithWifi">
+                                        <div class="form-group">
+                                            <label for="WithWifiCPENumber">Number of CPE for Wifi type</label>
+                                            <input type="text" class="form-control" formControlName="WithWifiCPENumber">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-sm-12" *ngIf="productDemosForm.value.WithVNF">
+                                            <div class="form-group">
+                                                <label for="WithVNFCPENumber">Number of CPE for VNF type</label>
+                                                <input type="text" class="form-control" formControlName="WithVNFCPENumber">
+                                            </div>
+                                        </div>
+                                </div>
+                    <div class="row">
+                      
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="expectedCPEPrice">Expected Price for CPE Type</label>
                                 <input type="text" class="form-control" formControlName="expectedCPEPrice">
                             </div>
                         </div>
+                      
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
@@ -158,7 +212,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="speedUnderlayConn">Speed of Underlay connection</label>
-                                <input type="text" class="form-control" formControlName="accountManager">
+                                <input type="text" class="form-control" formControlName="speedUnderlayConn">
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -176,12 +230,12 @@
                                 <input type="text" class="form-control" formControlName="OtherAppReq">
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                       <!-- <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="internetBreakoutReq">Internet Breakout requirement</label>
-                                <input type="text" class="form-control" formControlName="accountManager">
+                                <input type="text" class="form-control" formControlName="internetBreakoutReq">
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="row">
                         <div class="col-sm-6" style="    margin-left: -12px;
@@ -531,59 +585,236 @@
                         </div>
                     </div>
 
-                    <div formArrayName="contact"
-                        *ngFor="let contact of productDemosForm.get('contact').controls; let i = index;">
-                        <br>
-                        <div class="card card-outline-default" style="background: #ebebeb;">
-                            <div class="card-body" [formGroupName]="i">
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <div class="form-group">
-                                            <label [for]="salesEngineer">Sales Engineer</label>
-                                            <input type="text" class="form-control" [id]="salesEngineer"
-                                                formControlName="salesEngineer">
+               
+                        <!-------------------Sales Engineer------------------------------>
+                    <div formArrayName="salesManagerContact" *ngFor="let item of productDemosForm.get('salesManagerContact').controls; let i = index;">
+                                <br>
+                                <div class="card card-outline-default" style="background: white;">
+                                    <div class="card-body" [formGroupName]="i">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label [for]="name">Sales Engineer Contact Name&nbsp;&nbsp;<span style="color:red">*</span></label>
+                                                    <input type="text" class="form-control" [id]="name" formControlName="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div style="    margin-top: 21px;">
+                                                    <a class="addBtn addBtn-color" style="z-index:0"
+                                                        (click)="addSalesContact()">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a class="addBtn removeBtn-color" style="z-index:0" (click)="removeSalesContact(i)">x</a>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="form-group">
-                                            <label [for]="IPCCResource">IPCC Resource</label>
-                                            <input type="text" class="form-control" [id]="IPCCResource"
-                                                formControlName="IPCCResource">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div style="    margin-top: 21px;">
-                                            <a class="addBtn addBtn-color" style="z-index:0"
-                                                (click)="addSalesContact()">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a class="addBtn removeBtn-color" style="z-index:0"
-                                                (click)="removeSalesContact(i)">x</a>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="jobTitle">Sales Engineer Job Title</label>
+                                                    <input type="text" class="form-control" [id]="jobTitle" formControlName="jobTitle">
+                            
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="contactEmail">Sales Engineer Email</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                                        </div>
+                                                        <input class="form-control" type="text" [id]="contactEmail" formControlName="contactEmail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="contactPhone">Sales Engineer Phone</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                                        </div>
+                                                        <input class="form-control" type="number" [id]="contactPhone"
+                                                            formControlName="contactPhone">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <div class="form-group">
-                                            <label [for]="accountManager">AccountManager</label>
-                                            <input type="text" class="form-control" [id]="accountManager"
-                                                formControlName="accountManager">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="form-group">
-                                            <label [for]="projectManger">Technical Project Manager</label>
-                                            <input type="text" class="form-control" [id]="projectManger"
-                                                formControlName="projectManger">
-
-                                        </div>
-                                    </div>
-                                </div>
+                                <br>
                             </div>
-                        </div>
-                        <br>
-                    </div>
+    
+                            <!------------------------IPCC Manager------------------------------->
+                            <div formArrayName="IPCCContact" *ngFor="let item of productDemosForm.get('IPCCContact').controls; let i = index;">
+                                <br>
+                                <div class="card card-outline-default" style="background: #e6edf5;">
+                                    <div class="card-body" [formGroupName]="i">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label [for]="name">IPCC Contact Name&nbsp;&nbsp;<span style="color:red">*</span></label>
+                                                    <input type="text" class="form-control" [id]="name" formControlName="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div style="    margin-top: 21px;">
+                                                    <a class="addBtn addBtn-color" style="z-index:0"
+                                                        (click)="addIPCCContact()">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a class="addBtn removeBtn-color" style="z-index:0" (click)="removeIPCCContact(i)">x</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="jobTitle">IPCC Job Title</label>
+                                                    <input type="text" class="form-control" [id]="jobTitle" formControlName="jobTitle">
+                            
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="contactEmail">IPCC Contact Email</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                                        </div>
+                                                        <input class="form-control" type="text" [id]="contactEmail" formControlName="contactEmail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="contactPhone">IPCC Contact Phone</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                                        </div>
+                                                        <input class="form-control" type="number" [id]="contactPhone"
+                                                            formControlName="contactPhone">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+    
+                            <!-------------------Account Manager ----------------------------->
+                           <div formArrayName="accountManagerContact" *ngFor="let item of productDemosForm.get('accountManagerContact').controls; let i = index;">
+                                <br>
+                                <div class="card card-outline-default" style="background: white;">
+                                    <div class="card-body" [formGroupName]="i">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label [for]="name">Account Manger Contact Name&nbsp;&nbsp;<span style="color:red">*</span></label>
+                                                    <input type="text" class="form-control" [id]="name" formControlName="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div style="    margin-top: 21px;">
+                                                    <a class="addBtn addBtn-color" style="z-index:0"
+                                                        (click)="addAccountManagerContact()">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a class="addBtn removeBtn-color" style="z-index:0" (click)="removeAccountManagerContact(i)">x</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="jobTitle">Account Manager Job Title</label>
+                                                    <input type="text" class="form-control" [id]="jobTitle" formControlName="jobTitle">
+                            
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="contactEmail">Account Manager Contact Email</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                                        </div>
+                                                        <input class="form-control" type="text" [id]="contactEmail" formControlName="contactEmail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="contactPhone">Account Manager Contact Phone</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                                        </div>
+                                                        <input class="form-control" type="number" [id]="contactPhone"
+                                                            formControlName="contactPhone">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+    
+                            <!-------------------Technical Project Manager ----------------------------->
+                            <div formArrayName="techinicalProjectContact" *ngFor="let item of productDemosForm.get('techinicalProjectContact').controls; let i = index;">
+                                <br>
+                                <div class="card card-outline-default" style="background: #e6edf5;">
+                                    <div class="card-body" [formGroupName]="i">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label [for]="name">Technical Project Manager Name&nbsp;&nbsp;<span style="color:red">*</span></label>
+                                                    <input type="text" class="form-control" [id]="name" formControlName="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div style="    margin-top: 21px;">
+                                                    <a class="addBtn addBtn-color" style="z-index:0"
+                                                        (click)="addTechnicalProjectManagerContact()">+</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a class="addBtn removeBtn-color" style="z-index:0" (click)="removeTechnicalProjectmanagerContact(i)">x</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="jobTitle">Technical Project Manager Job Title</label>
+                                                    <input type="text" class="form-control" [id]="jobTitle" formControlName="jobTitle">
+                            
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="contactEmail">Technical Project Manager Contact Email</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                                        </div>
+                                                        <input class="form-control" type="text" [id]="contactEmail" formControlName="contactEmail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label [for]="contactPhone">Technical Project Manager Phone</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                                        </div>
+                                                        <input class="form-control" type="number" [id]="contactPhone"
+                                                            formControlName="contactPhone">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
 
-                    <div formArrayName="items"
+                   <div formArrayName="items"
                         *ngFor="let item of productDemosForm.get('items').controls; let i = index;">
                         <br>
                         <div class="card card-outline-default">
@@ -643,6 +874,9 @@
                         </div>
                         <br>
                     </div>
+
+
+
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">

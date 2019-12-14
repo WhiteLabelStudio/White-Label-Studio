@@ -336,6 +336,51 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <br>
+                                        <div class="row">
+                                                <div class="col-12">
+                                            <h3 class="headingClass" style="text-align:center;">CONTACT DETAILS</h3>
+                                            </div>
+                                        </div><br>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 bottom-30"
+                                                *ngFor="let contact of demoDt.contacts">
+                                                <div class="card card-primary text-center info-box" style="color: white;
+                                                border-radius: 15px;background: #248dad;">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <h4>{{contact.name|| 'No Contact Available for'}}</h4>
+                                                                    </div>
+                                                                    <div class="col-12" style="margin-top: -12px;">
+                                                                        <span>{{contact.type}}</span>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div><br>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <h5 class="no-margin text-truncate"><i
+                                                                        class="fa fa-envelope-o"
+                                                                        style="font-size:15px"></i>&nbsp;Contact Email
+                                                                </h5>
+                                                                <h6>{{contact.contactEmail||'-'}}</h6>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <h5 class="no-margin text-truncate"><i
+                                                                        class="fa fa-phone"
+                                                                        style="font-size:15px"></i>&nbsp;Contact Number
+                                                                </h5>
+                                                                <span>{{contact.contactPhone||'-'}}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -393,7 +438,7 @@
                                     <button class="btn btn-main pull-left" routerLink="/pages/trail-home">
                                         <i class="fa fa-chevron-left arrow"></i>&nbsp;Back to Search</button>
                                     <button class="btn btn-main pull-right" routerLink="/pages/solutiontrailrequesttool"
-                                        *ngIf="detailsForm.value.verifyFlag">
+                                        *ngIf="detailsForm.value.verifyFlag" (click)="defaultDemoDetails()">
                                         Request New Trail &nbsp;<i class="fa fa-chevron-right arrow"></i></button>
 
                                     <button class="btn btn-main transition pull-right" disabled="disabled" type="button"

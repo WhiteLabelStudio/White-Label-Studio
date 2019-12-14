@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService, GlobalConfig } from 'ngx-toastr';
-import { TrailstudioService } from '../../trailstudio.service'
+import { TrailstudioService } from '../../trailstudio.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class TrailDetailsComponent implements OnInit {
 
 
 
-    constructor(private formBuilder: FormBuilder, private trailstudio: TrailstudioService, public toastrService: ToastrService) {
+    constructor(private formBuilder: FormBuilder, private trailstudio: TrailstudioService, public toastrService: ToastrService,private router: Router) {
 
 
         this.getAllCustomerDetails();
@@ -71,6 +72,14 @@ export class TrailDetailsComponent implements OnInit {
     }
 
 
+    defaultDemoDetails(){
+        if(this.demoDt && this.demoDt.demoid)
+        this.router.navigate(['/pages/solutiontrailrequesttool'],{ queryParams: { demoid: this.demoDt.demoid} });
+        else
+        this.router.navigate(['/pages/solutiontrailrequesttool']);
+      }
+
+
     //get Details for the customer and demoed product
 
 
@@ -86,13 +95,15 @@ export class TrailDetailsComponent implements OnInit {
             });
     }
 
+
+
+
     getTrailforDemo() {
         console.log("I am called..");
         this.trailstudio
             .getTrailforDemo()
             .subscribe((data) => {
                 this.demoDt = data[0];
-                console.log(this.demoDt);
             });
     }
    

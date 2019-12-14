@@ -423,10 +423,10 @@ export class OpportunityDetailsComponent implements OnInit {
         this.toastrService.success('Qualified Opportunity submitted succcessfully.', 'Thank You :)');
         console.log(this.qualifiedOpportunitiesForm.value);
         this.trailstudio
-          .insertQualifiedOpportynity(this.qualifiedOpportunitiesForm.value)
-          .subscribe((data) => {
+          .insertQualifiedOpportynity(this.qualifiedOpportunitiesForm.value);
+        /*  .subscribe((data) => {
             console.log("Saved Successfully...", data);
-          });
+          });*/
         this.initilizeQualifiedOpportunity();
         }
       }

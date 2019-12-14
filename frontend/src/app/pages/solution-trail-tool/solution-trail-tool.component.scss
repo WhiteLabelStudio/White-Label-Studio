@@ -84,7 +84,7 @@
 .form-wizard{  
     margin-top:25px;
     margin-bottom: 20px;
-    background: $body-bg-color;
+    background: #dde3e8;
     padding-top: 15px; 
     min-height: 400px;   
     .form-title{
@@ -326,3 +326,98 @@
     -webkit-box-shadow: 0 0 0 1px #f58029, inset 0 1px 1px #b14f07;
     box-shadow: 0 0 0 1px #f58029, inset 0 1px 1px #b14f07;
   }
+
+
+
+
+.addBtn{
+   
+    font-size: 24px!important;
+    border-radius: 50%;
+    transition: opacity 0s;
+    user-select: none;
+    border: none;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.addBtn-color:hover{
+
+    color: #fff!important;
+    background-color:#2e63bf!important;
+}
+
+.addBtn-color{
+    color: #fff!important;
+    background-color: #124191!important;
+}
+
+
+.removeBtn-color{
+    color: #fff!important;
+    background-color: #bf1725!important;
+}
+
+
+.card.card-outline-default {
+    border: 1px solid #c1c7ce!important;
+}
+
+.btn-main {
+    background: #124191;
+}
+
+.btn-main:hover{
+    background: rgba(18, 65, 145, 0.8);
+}
+
+
+input[type=checkbox] {
+    transform: scale(1.5);
+}
+
+.card-background{
+    background: #1e88e5 !important;
+}
+
+.textCenter{
+    text-align: center;
+}
+
+legend {
+    display: block;
+    /* width: 100%; */
+    /* max-width: 100%; */
+    /* padding: 0; */
+    margin-bottom: .5rem;
+    font-size: 0.9rem;
+    line-height: inherit;
+    color: inherit;
+    white-space: normal;
+    width: auto;
+}
+
+fieldset {
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+    min-inline-size: min-content;
+    border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
+}
+
+.borderColor{
+    border-color: white;
+}
+

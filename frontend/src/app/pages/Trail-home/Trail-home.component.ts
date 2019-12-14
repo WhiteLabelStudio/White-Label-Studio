@@ -24,93 +24,30 @@ export class TrailComponent implements OnInit {
       orderBy: ['asc'],
       customerAttr: [''],
     });
-    this.findQualifiedOpportunity();
+ this.getSolutionTrail();
   }
 
 
-   //Get All Customer Details
-   getQualifiedOpprtunity() {
+  getSolutionTrail(){
     this.trailstudio
-      .getQualifiedOpportunities()
-      .subscribe((data) => {
-        console.log(data);
-        this.qo = data;
-        console.log("I am called again..",this.qo);
-      });
+    .getAllTrailsDetails()
+    .subscribe((data) => {
+      this.getAllTrailsDt();
+    });
   }
 
-
-  findQualifiedOpportunity() {
+  getAllTrailsDt(){
     this.trailstudio
-      .getAllQualifiedOpportunities()
-      .subscribe((data) => {
-        this.getQualifiedOpprtunity();
-      });
+    .getSolutionTrails()
+    .subscribe((data) => {
+      console.log(data);
+      this.qo = data;
+      console.log("I am called again..",this.qo);
+    });
   }
+
 
   cardClicked(qo){
-    this.router.navigate(['/pages/qualifiedopportunities'],{ queryParams: { projectid: qo.projectid} });
-  }
-
-  public firstControlModel: number[];
-  public firstControlOptions: IMultiSelectOption[] = [
-    { id: 1, name: 'Option 1' },
-    { id: 2, name: 'Option 2' },
-    { id: 3, name: 'Option 3' },
-  ];
-
-  public secondControlModel: number[];
-  public secondControlSettings: IMultiSelectSettings = {
-      checkedStyle: 'fontawesome',
-      buttonClasses: 'btn btn-secondary btn-block',
-      dynamicTitleMaxItems: 3,
-      displayAllSelectedText: true,
-      showCheckAll: true,
-      showUncheckAll: true
-  };
-  public secondControlTexts: IMultiSelectTexts = {
-      checkAll: 'Select all',
-      uncheckAll: 'Unselect all',
-      checked: 'item selected',
-      checkedPlural: 'items selected',
-      searchPlaceholder: 'Find',
-      defaultTitle: 'Select countries',
-      allSelected: 'All selected',
-  };
-  public secondControlOptions: IMultiSelectOption[] = [
-      { id: 1, name: 'Sweden'},
-      { id: 2, name: 'Norway' },
-      { id: 3, name: 'Canada' },
-      { id: 4, name: 'USA' }
-  ];
-
-
-  public thirdControlModel: number[];
-  public thirdControlSettings: IMultiSelectSettings = {
-      enableSearch: true,
-      checkedStyle: 'checkboxes',
-      buttonClasses: 'btn btn-secondary btn-block',
-      dynamicTitleMaxItems: 3,
-      displayAllSelectedText: true
-  };
-  public thirdControlTexts: IMultiSelectTexts = {
-      checkAll: 'Select all',
-      uncheckAll: 'Unselect all',
-      checked: 'item selected',
-      checkedPlural: 'items selected',
-      searchPlaceholder: 'Find...',
-      defaultTitle: 'Select countries',
-      allSelected: 'All selected',
-  };
-  public thirdControlOptions: IMultiSelectOption[] = [
-      { id: 1, name: 'Sweden'},
-      { id: 2, name: 'Norway' },
-      { id: 3, name: 'Canada' },
-      { id: 4, name: 'USA' }
-  ];
-
-
-  public changeOrderBy() {
-      console.log(this.firstControlModel);
+    this.router.navigate(['/pages/solutiontrailrequesttool'],{ queryParams: { trail: qo.trailid} });
   }
 }

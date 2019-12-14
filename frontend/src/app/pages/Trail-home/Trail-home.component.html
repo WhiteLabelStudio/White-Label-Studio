@@ -33,16 +33,15 @@ padding: 20px;">
                 <select class="form-control" placeholder="Search Customer..." name="customerAttr" formControlName="customerAttr">
                     <option style="display: none;"  value="">Choose ... </option>
                     <option value="customername" selected="selected">Customer name</option>
-                    <option value="product">Product</option>
-                    <option value="customertype">Customer Type</option>
-                    <option value="year">Year</option>
+                    <option value="package">Package</option>
+                    <option value="cloudflag">Cloud Used</option>
                 </select>
         </div>
   </div>     
 </div>
 </form>
 </div>
-<!--<div class="row top-40" style="padding-top:65px">
+<div class="row top-40" style="padding-top:65px">
 <div class="col-lg-4 grid-margin stretch-card bottom-30"   *ngFor="let qo of qo | filter : searchForm.value.searchTxt| sortBy:searchForm.value.orderBy:searchForm.value.customerAttr" (click)="cardClicked(qo)">
     <div class="card card-weather" style="border-radius: 15px;">
             <img class="card-img-top" src="../assets/img/app/bg-img.png" alt="Card image cap">
@@ -51,24 +50,19 @@ padding: 20px;">
                     <p class="card-text  card-font">25 October, 2019 CA, United States </p>
               </div>
         <div class="card-body p-0">
-            <div class="d-flex weakly-weather">
+            <div class="d-flex weakly-weather" style=" flex: 2 0 33.333%;">
                 <div class="weakly-weather-item">
-                    <p class="mb-0"> Product </p>
+                    <p class="mb-1" style="    color: #6c757d;"> Package Interested</p>
                     <i class="mdi mdi-weather-cloudy"></i>
-                    <p class="mb-0"> VNS </p>
+                    <p class="mb-0"> {{qo.package}} </p>
                 </div>
                 <div class="weakly-weather-item">
-                    <p class="mb-1">Type</p>
+                    <p class="mb-1" style="    color: #6c757d;">Cloud Used</p>
                     <i class="mdi mdi-weather-hail"></i>
-                    <p class="mb-0">{{qo.customertype}} </p>
-                </div>
-                <div class="weakly-weather-item">
-                    <i class="mdi mdi-weather-partlycloudy"></i>
-                    <p class="mb-0"> 2019</p>
-                    <p class="mb-0"> Q1, Q2</p>
+                    <p class="mb-0">{{qo.cloudflag==='public'? 'Public': qo.cloudflag==='private'? 'Private':'Cloud not used'}} </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>-->
+</div>

@@ -22,6 +22,7 @@ import { SearchComponent } from './search/search.component';
 import { OpportunityDetailsComponent } from './opportunity-details/opportunity-details.component';
 import { ProductDemoComponent } from './product-demo/product-demo.component';
 import { AboutComponent } from './about/about.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 import { FileUploaderComponent } from './product-demo/file-uploader/file-uploader.component';
 import { SolutionTrailTool } from './solution-trail-tool/solution-trail-tool.component';
 import { QOComponent } from './qo-home/qo-home.component';
@@ -60,6 +61,7 @@ import { SortByPipe} from './qo-home/sortBy.pipe';
     OpportunityDetailsComponent,
     ProductDemoComponent,
     AboutComponent,
+    ThankyouComponent,
     FileUploaderComponent,
     SolutionTrailTool,
     QOComponent,

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/share';
 
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
@@ -15,6 +16,7 @@ const httpOptions = {
 export class TrailstudioService {
 
   uri = 'http://localhost:4000';
+  i=0;
   constructor(private http: HttpClient) { }
 
   //Initilize Qualified opportunity
@@ -61,7 +63,17 @@ export class TrailstudioService {
      };
      console.log("-----------------------");
      console.log(customer);
-     return this.http.post(`${this.uri}/QualifiedOpportunities/saveCustomer`, customer, httpOptions);
+     return this.http.post(`${this.uri}/saveCustomer`, customer, httpOptions);
+  }
+ 
+  //Save Solution Trail
+  insertSolutionTrail(f){
+     this.i=this.i+1;
+console.log("I returning trail from service:",this.i);
+//return this.http.post(`${this.uri}/saveTrail`, f, httpOptions).share();
+return this.http.post(`${this.uri}/saveTrail`, f, httpOptions).subscribe((data) => {
+  console.log("Saved Successfully...", data);
+});
   }
 
   //Save Product Demos
@@ -91,8 +103,35 @@ demosalesengineering:f.demoSalesEngineer,
 ipccresource:f.IPCCResource,
 accountmanager:f.accountManager,
 compititor:f.competitor,
-feedback:f.feedback
+feedback:f.feedback,
+
+OtherAppReq:f.OtherAppReq,
+speedUnderlayConn:f.speedUnderlayConn,
+expectedThroughputReq:f.expectedThroughputReq,
+internetBreakoutReq:f.internetBreakoutReq,
+routingReq:f.routingReq,
+cloudFlag:f.cloudFlag,
+vendor:f.vendor,
+linkProvider:f.linkProvider,
+ExistingCustApp:f.ExistingCustApp,
+endCustomerFlag:f.endCustomerFlag,
+WithLTE:f.WithLTE,
+WithoutLTE:f.WithoutLTE,
+WithWifi:f.WithWifi,
+WithoutWifi:f.WithoutWifi,
+WithVNF:f.WithVNF,
+WithoutVNF:f.WithoutVNF,
+WithLTECPENumber:f.WithLTECPENumber,
+WithVNFCPENumber:f.WithVNFCPENumber,
+WithWifiCPENumber:f.WithWifiCPENumber,
+salesContact:f.salesManagerContact,
+IPCCContact:f.IPCCContact,
+accountManagerContact:f.accountManagerContact,
+techinicalProjectContact:f.techinicalProjectContact,
+items:f.items
   }
+  console.log("Trail Studio final list: ",pd);
+
   return this.http.post(`${this.uri}/ProductDemos/savePD`, pd, httpOptions);
   }
 
@@ -120,7 +159,9 @@ feedback:f.feedback
       salesengineer:f.salesEngineer,
       items:f.items
     };
-    return this.http.post(`${this.uri}/QualifiedOpportunities/saveQO`, QO, httpOptions);
+    return this.http.post(`${this.uri}/saveQO`, QO, httpOptions).subscribe((data) => {
+      console.log("Saved Successfully...", data);
+    });;
   }
 
 
@@ -159,35 +200,55 @@ feedback:f.feedback
   updateProductDemo(f){
     console.log("This is to update Product Demos");
     console.log(f);
-    var QO = {
-      demo_id:f.demoid,
-  project_id:f.projectId,
-  interested_product:f.interestedProduct,
-  demoed_product:f.demoedProduct,
-  demo_sales_engineer:f.demoSalesEngineer,
-  ipcc_resource:f.IPCCResource,
-  account_manager:f.accountManager,
-  competitors:f.competitor,
-  feedback:f.feedback,
-  webex_url:f.webExUrl,
-  customer_name:f.customerName,
-  SCRM_number:f.SCRMNumber,
-  expected_PO_value:f.expectedPOValue,
-  no_of_sites:f.noOfSites,
-  CPE_type:f.CPEType,
-  CPE_number:f.CPENumber,
-  expected_CPE_price:f.expectedCPEPrice,
-  CPE_yearly_growth:f.CPEYearlyGrowth,
-  expected_POC_date:f.expectedPOCDate,
-  expected_deployment_date:f.expectedDeploymentDate,
-  VAN_service_flag:f.VANServiceFlag,
-  CE_integration_flag: f.CEIntegrationFlag,
-  DC_flag:f.DCFlag,
-  underlink_provider_flag:f.underlaylink,
-  demo_date:f.demoDate,
-  customer_id:f.customerId  
-    };
-    return this.http.post(`${this.uri}/ProductDemos/updatePD`, QO, httpOptions);
+    var pd = {
+      projectId:f.project,
+      demoid:f.demoid,
+      customerid:f.customerId,
+      customername:f.customerName,
+      scrmnumber:f.SCRMNumber,
+      expectedpovalue:f.expectedPOValue,
+      cpettype:f.CPEType,
+      cpenumber:f.CPENumber,
+      expectedcpeprice:f.expectedCPEPrice,
+      cpeyearlygrowth:f.CPEYearlyGrowth,
+      expectedpocdate:f.expectedPOCDate,
+      expecteddeploymentdate:f.expectedDeploymentDate,
+      vanserviceflag:f.VANServiceFlag,
+      ceintegrationflag:f.CEIntegrationFlag,
+      dcflag:f.DCFlag,
+      underlaylink:f.underlaylink,
+      interestedproduct:f.interestedProduct,
+      demoedproduct:f.demoedProduct,
+      demodate:f.demoDate,
+      weburl:f.webExUrl,
+      numberofsites:f.noOfSites,
+      demosalesengineering:f.demoSalesEngineer,
+      ipccresource:f.IPCCResource,
+      accountmanager:f.accountManager,
+      compititor:f.competitor,
+      feedback:f.feedback,
+      
+      OtherAppReq:f.OtherAppReq,
+      speedUnderlayConn:f.speedUnderlayConn,
+      expectedThroughputReq:f.expectedThroughputReq,
+      internetBreakoutReq:f.internetBreakoutReq,
+      routingReq:f.routingReq,
+      cloudFlag:f.cloudFlag,
+      vendor:f.vendor,
+      linkProvider:f.linkProvider,
+      ExistingCustApp:f.ExistingCustApp,
+      endCustomerFlag:f.endCustomerFlag,
+      WithLTE:f.WithLTE,
+      WithoutLTE:f.WithoutLTE,
+      WithWifi:f.WithWifi,
+      WithoutWifi:f.WithoutWifi,
+      WithVNF:f.WithVNF,
+      WithoutVNF:f.WithoutVNF,
+      WithLTECPENumber:f.WithLTECPENumber,
+      WithVNFCPENumber:f.WithVNFCPENumber,
+      WithWifiCPENumber:f.WithWifiCPENumber,
+        }
+    return this.http.post(`${this.uri}/ProductDemos/updatePD`, pd, httpOptions);
   }
 
   //Get All Qualified Opportunitties
@@ -202,12 +263,48 @@ feedback:f.feedback
     return this.http.post(`${this.uri}/QualifiedOpportunities/getQO`, find_stations_at, httpOptions);
   }
 
+
+  getAllProjects(){
+    const find_stations_at = {
+      //placeName: placeName;
+    };
+    var str = JSON.stringify(find_stations_at, null, 2);
+    console.log("JSON added successfully");
+    console.log("I am in showQualifiedOpportunities trailstudio.service");
+    return this.http.post(`${this.uri}/QualifiedOpportunities/getAllProject`, find_stations_at, httpOptions);
+  }
+
   //Get All product demos
   getAllProductDemos(){
     console.log("I am in getAllProductDemos trailstudio.service");
     return this.http.post(`${this.uri}/ProductDemos/getPD`, httpOptions); 
   }
 
+
+
+  //Get Project Details
+  getSolutionTrails() {
+    return this.http.get(`${this.uri}/SolutionTrail`);
+  }
+
+  getSolutionTrailsDetails() {
+    console.log("I am Solution Trail Data  came here : ");
+    return this.http.get(`${this.uri}/SolutionTrail1`);
+  }
+
+  getSolutionTrailData(t){
+console.log("I am Solution Trail Data : ",t);
+var trail = {
+  trail: t
+}
+    return this.http.post(`${this.uri}/SolutionTrail1/getTrailData`, trail , httpOptions);
+  }
+
+
+  //Get All trails
+  getAllTrailsDetails(){
+    return this.http.post(`${this.uri}/SolutionTrail/getAllTrails`, httpOptions); 
+  }
 
 
   //Get Project Details

@@ -13,6 +13,7 @@ import { QOComponent } from './qo-home/qo-home.component';
 import { PDComponent } from './pd-home/pd-home.component';
 import { TrailComponent } from './Trail-home/Trail-home.component';
 import { TrailDetailsComponent } from './trail-details/trail-details.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 
 export const routes: Routes = [
     {
@@ -41,6 +42,7 @@ export const routes: Routes = [
             { path: 'solutiontrailrequesttool', component: SolutionTrailTool},
             { path: 'productdemo', component: ProductDemoComponent},
             { path: 'about', component: AboutComponent},
+            { path: 'thankyou', component: ThankyouComponent},
             { path: 'qo-home', component: QOComponent},
             { path: 'trail-home', component: TrailComponent},
             { path: 'trail-details', component: TrailDetailsComponent},
