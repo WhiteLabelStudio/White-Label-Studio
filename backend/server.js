@@ -1224,7 +1224,7 @@ router.route('/demo/getDemo').post((req, res) => {
 
 
 async function get_pd(t) {
-  var SQL = "SELECT * FROM demo where demo_id = " + t;
+  var SQL = "SELECT * FROM DEMO where demo_id = " + t;
   MySQLCon.query(SQL, function (err, result, fields) {
     if (err) throw err;
     demo = [];
